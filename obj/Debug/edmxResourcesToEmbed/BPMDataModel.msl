@@ -4,6 +4,9 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="AtBPMModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="UsrScaniaCount" ColumnName="UsrScaniaCount" />
+          <ScalarProperty Name="UsrB7Count" ColumnName="UsrB7Count" />
+          <ScalarProperty Name="UsrAuthorId" ColumnName="UsrAuthorId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
@@ -215,6 +218,20 @@
           <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="ContactId" ColumnName="ContactId" />
           <ScalarProperty Name="CommunicationTypeId" ColumnName="CommunicationTypeId" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountIndustry">
+      <EntityTypeMapping TypeName="AtBPMModel.AccountIndustry">
+        <MappingFragment StoreEntitySet="AccountIndustry">
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
           <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
           <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />

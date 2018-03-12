@@ -46,6 +46,11 @@
     <NavigationProperty Name="Activity" Relationship="Self.FKirx80iw4YX19Eui684F7BsFSAp8" FromRole="Account" ToRole="Activity" />
     <NavigationProperty Name="Contact1" Relationship="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA" FromRole="Account" ToRole="Contact" />
     <NavigationProperty Name="Contact2" Relationship="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" FromRole="Account" ToRole="Contact" />
+    <NavigationProperty Name="AccountIndustry" Relationship="AtBPMModel.FKuRAVTAXLVZf8OIhtHm7ZbHObBAM" FromRole="Account" ToRole="AccountIndustry" />
+    <Property Name="UsrAuthorId" Type="Guid" />
+    <NavigationProperty Name="Contact3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Account" ToRole="Contact" />
+    <Property Name="UsrB7Count" Type="Int32" Nullable="false" />
+    <Property Name="UsrScaniaCount" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Activity">
     <Key>
@@ -207,6 +212,7 @@
     <NavigationProperty Name="Contact21" Relationship="AtBPMModel.FKF0cPIiQBZRg5tlGUwAGjqi46ySU" FromRole="Contact1" ToRole="Contact" />
     <NavigationProperty Name="Job" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Contact" ToRole="Job" />
     <NavigationProperty Name="ContactCommunication" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="Contact" ToRole="ContactCommunication" />
+    <NavigationProperty Name="Account3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Contact" ToRole="Account" />
   </EntityType>
   <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -402,6 +408,15 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="ContactCommunication" EntitySet="ContactCommunication" />
     </AssociationSet>
+    <EntitySet Name="AccountIndustry" EntityType="AtBPMModel.AccountIndustry" />
+    <AssociationSet Name="FKuRAVTAXLVZf8OIhtHm7ZbHObBAM" Association="AtBPMModel.FKuRAVTAXLVZf8OIhtHm7ZbHObBAM">
+      <End Role="AccountIndustry" EntitySet="AccountIndustry" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKeiYieL27Ia7raCMTyqDHiiC6Po" Association="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
     <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -475,6 +490,44 @@
       </Principal>
       <Dependent Role="ContactCommunication">
         <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountIndustry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKuRAVTAXLVZf8OIhtHm7ZbHObBAM" FromRole="AccountIndustry" ToRole="Account" />
+  </EntityType>
+  <Association Name="FKuRAVTAXLVZf8OIhtHm7ZbHObBAM">
+    <End Type="AtBPMModel.AccountIndustry" Role="AccountIndustry" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountIndustry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IndustryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKeiYieL27Ia7raCMTyqDHiiC6Po">
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UsrAuthorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

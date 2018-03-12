@@ -40,6 +40,22 @@
     <Property Name="PriceListId" Type="uniqueidentifier" />
     <Property Name="Completeness" Type="int" Nullable="false" />
     <Property Name="AccountLogoId" Type="uniqueidentifier" />
+    <Property Name="UsrAuthorId" Type="uniqueidentifier" />
+    <Property Name="UsrB7Count" Type="int" Nullable="false" />
+    <Property Name="UsrScaniaCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountIndustry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Activity">
     <Key>
@@ -267,6 +283,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKeiYieL27Ia7raCMTyqDHiiC6Po">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UsrAuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
     <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
     <End Role="Contact1" Type="Self.Contact" Multiplicity="*" />
@@ -375,6 +403,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKuRAVTAXLVZf8OIhtHm7ZbHObBAM">
+    <End Role="AccountIndustry" Type="Self.AccountIndustry" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountIndustry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IndustryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKxLbw957waHhgItDgCsX3oYCAFMs">
     <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
     <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
@@ -389,6 +429,7 @@
   </Association>
   <EntityContainer Name="Хранилище AtBPMModelContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountIndustry" EntityType="Self.AccountIndustry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ContactCommunication" EntityType="Self.ContactCommunication" Schema="dbo" store:Type="Tables" />
@@ -408,6 +449,10 @@
     <AssociationSet Name="FKD8t0odGZO4owpC6Kfp3piB5CYgQ" Association="Self.FKD8t0odGZO4owpC6Kfp3piB5CYgQ">
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKeiYieL27Ia7raCMTyqDHiiC6Po" Association="Self.FKeiYieL27Ia7raCMTyqDHiiC6Po">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Account" EntitySet="Account" />
     </AssociationSet>
     <AssociationSet Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU" Association="Self.FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
       <End Role="Contact" EntitySet="Contact" />
@@ -443,6 +488,10 @@
     </AssociationSet>
     <AssociationSet Name="FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" Association="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc">
       <End Role="Contact" EntitySet="Contact" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKuRAVTAXLVZf8OIhtHm7ZbHObBAM" Association="Self.FKuRAVTAXLVZf8OIhtHm7ZbHObBAM">
+      <End Role="AccountIndustry" EntitySet="AccountIndustry" />
       <End Role="Account" EntitySet="Account" />
     </AssociationSet>
     <AssociationSet Name="FKxLbw957waHhgItDgCsX3oYCAFMs" Association="Self.FKxLbw957waHhgItDgCsX3oYCAFMs">

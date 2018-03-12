@@ -115,7 +115,6 @@ namespace crmtransfer
                 {
                     bpmcontact.JobId = dicJobsTable[contact.JobID ?? Guid.Empty];
                 }
-
                 switch (contact.DecisionRoleID.ToString().ToUpper())
                 {
                     case "E4DDA556-4C53-414A-B4F6-5853EBCACAB5": //ЛПР
@@ -131,7 +130,6 @@ namespace crmtransfer
                         bpmcontact.DecisionRoleId = new Guid("91E32C57-57E6-DF11-971B-001D60E938C6");
                         break;
                 }
-
                 switch (contact.DepartmentID.ToString().ToUpper())
                 {
                     case "919FDC17-F56E-46E3-95C0-02A2C53846D4": //Продажи
@@ -162,7 +160,6 @@ namespace crmtransfer
                         bpmcontact.DepartmentId = new Guid("8B87248C-9FBF-4A03-B568-63970CBF6697");
                         break;
                 }
-
                 bpmcontact.Notes = contact.Comment ?? "";
 
                 bpmcontact.Phone = "";
@@ -202,8 +199,6 @@ namespace crmtransfer
                     Console.WriteLine($"{(int)(progress / step) * 5}%");
                 }
                 dbBPM.Contact.Add(bpmcontact);
-                //dbBPM.Configuration.AutoDetectChangesEnabled = true;
-                //dbBPM.SaveChanges();
             }
             outStr = "Сохраняем БД";
             Console.WriteLine(outStr); Log.Info(outStr);

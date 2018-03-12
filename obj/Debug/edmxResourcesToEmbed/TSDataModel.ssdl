@@ -117,6 +117,18 @@
     <Property Name="Position" Type="int" />
     <Property Name="Digits" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="tbl_Field">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
   <EntityType Name="tbl_Job">
     <Key>
       <PropertyRef Name="ID" />
@@ -130,6 +142,18 @@
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <Association Name="FAccountFieldID">
+    <End Role="tbl_Field" Type="Self.tbl_Field" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Field">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="FieldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FAccountOwnerID">
     <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
     <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
@@ -266,7 +290,12 @@
     <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
+      <End Role="tbl_Field" EntitySet="tbl_Field" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
     <AssociationSet Name="FAccountOwnerID" Association="Self.FAccountOwnerID">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
       <End Role="tbl_Account" EntitySet="tbl_Account" />
