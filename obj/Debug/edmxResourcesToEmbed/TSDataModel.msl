@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AtTSModelContainer" CdmEntityContainer="TSEntities">
+    <EntitySetMapping Name="tbl_Contact">
+      <EntityTypeMapping TypeName="AtTSModel.tbl_Contact">
+        <MappingFragment StoreEntitySet="tbl_Contact">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="Dear" ColumnName="Dear" />
+          <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
+          <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="Communication1" ColumnName="Communication1" />
+          <ScalarProperty Name="Communication2" ColumnName="Communication2" />
+          <ScalarProperty Name="Communication3" ColumnName="Communication3" />
+          <ScalarProperty Name="Communication4" ColumnName="Communication4" />
+          <ScalarProperty Name="Communication1TypeID" ColumnName="Communication1TypeID" />
+          <ScalarProperty Name="Communication2TypeID" ColumnName="Communication2TypeID" />
+          <ScalarProperty Name="Communication3TypeID" ColumnName="Communication3TypeID" />
+          <ScalarProperty Name="Communication4TypeID" ColumnName="Communication4TypeID" />
+          <ScalarProperty Name="DecisionRoleID" ColumnName="DecisionRoleID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DoNotCall" ColumnName="DoNotCall" />
+          <ScalarProperty Name="EmailOptOut" ColumnName="EmailOptOut" />
+          <ScalarProperty Name="ContactTypeID" ColumnName="ContactTypeID" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentBasis" ColumnName="DocumentBasis" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Job">
+      <EntityTypeMapping TypeName="AtTSModel.tbl_Job">
+        <MappingFragment StoreEntitySet="tbl_Job">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NameOf" ColumnName="NameOf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ContactCommunication">
+      <EntityTypeMapping TypeName="AtTSModel.tbl_ContactCommunication">
+        <MappingFragment StoreEntitySet="tbl_ContactCommunication">
+          <ScalarProperty Name="Digits" ColumnName="Digits" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="CommunicationTypeID" ColumnName="CommunicationTypeID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Account">
+      <EntityTypeMapping TypeName="AtTSModel.tbl_Account">
+        <MappingFragment StoreEntitySet="tbl_Account">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Owner4ID" ColumnName="Owner4ID" />
+          <ScalarProperty Name="Owner3ID" ColumnName="Owner3ID" />
+          <ScalarProperty Name="Owner2ID" ColumnName="Owner2ID" />
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+          <ScalarProperty Name="TransportType3" ColumnName="TransportType3" />
+          <ScalarProperty Name="TransportType2" ColumnName="TransportType2" />
+          <ScalarProperty Name="TransportType1" ColumnName="TransportType1" />
+          <ScalarProperty Name="Dir3" ColumnName="Dir3" />
+          <ScalarProperty Name="Dir2" ColumnName="Dir2" />
+          <ScalarProperty Name="Dir1" ColumnName="Dir1" />
+          <ScalarProperty Name="ASMAP" ColumnName="ASMAP" />
+          <ScalarProperty Name="OwnService" ColumnName="OwnService" />
+          <ScalarProperty Name="UsedCars" ColumnName="UsedCars" />
+          <ScalarProperty Name="Distance_1ID" ColumnName="Distance_1ID" />
+          <ScalarProperty Name="DistanceID" ColumnName="DistanceID" />
+          <ScalarProperty Name="PostponementPayment" ColumnName="PostponementPayment" />
+          <ScalarProperty Name="SettledCredit" ColumnName="SettledCredit" />
+          <ScalarProperty Name="TaxRegistrationCode" ColumnName="TaxRegistrationCode" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Communication5TypeID" ColumnName="Communication5TypeID" />
+          <ScalarProperty Name="Communication4TypeID" ColumnName="Communication4TypeID" />
+          <ScalarProperty Name="Communication3TypeID" ColumnName="Communication3TypeID" />
+          <ScalarProperty Name="Communication2TypeID" ColumnName="Communication2TypeID" />
+          <ScalarProperty Name="Communication1TypeID" ColumnName="Communication1TypeID" />
+          <ScalarProperty Name="Communication5" ColumnName="Communication5" />
+          <ScalarProperty Name="Communication4" ColumnName="Communication4" />
+          <ScalarProperty Name="Communication3" ColumnName="Communication3" />
+          <ScalarProperty Name="Communication2" ColumnName="Communication2" />
+          <ScalarProperty Name="Communication1" ColumnName="Communication1" />
+          <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+          <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="EmployeesNumber" ColumnName="EmployeesNumber" />
+          <ScalarProperty Name="AnnualRevenue" ColumnName="AnnualRevenue" />
+          <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+          <ScalarProperty Name="PrimaryContactID" ColumnName="PrimaryContactID" />
+          <ScalarProperty Name="OfficialAccountName" ColumnName="OfficialAccountName" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

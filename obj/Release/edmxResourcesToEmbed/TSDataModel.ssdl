@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AtTSModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="OfficialAccountName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PrimaryContactID" Type="uniqueidentifier" />
+    <Property Name="TerritoryID" Type="uniqueidentifier" />
+    <Property Name="AnnualRevenue" Type="int" />
+    <Property Name="EmployeesNumber" Type="int" />
+    <Property Name="OwnerID" Type="uniqueidentifier" />
+    <Property Name="AddressTypeID" Type="uniqueidentifier" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="CityID" Type="uniqueidentifier" />
+    <Property Name="StateID" Type="uniqueidentifier" />
+    <Property Name="ZIP" Type="nvarchar" MaxLength="250" />
+    <Property Name="CountryID" Type="uniqueidentifier" />
+    <Property Name="ActivityID" Type="uniqueidentifier" />
+    <Property Name="FieldID" Type="uniqueidentifier" />
+    <Property Name="Communication1" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication3" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication4" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication5" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication1TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication2TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication3TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication4TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication5TypeID" Type="uniqueidentifier" />
+    <Property Name="Description" Type="image" />
+    <Property Name="AccountTypeID" Type="uniqueidentifier" />
+    <Property Name="Code" Type="nvarchar" MaxLength="250" />
+    <Property Name="TaxRegistrationCode" Type="nvarchar" MaxLength="250" />
+    <Property Name="SettledCredit" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="PostponementPayment" Type="int" />
+    <Property Name="DistanceID" Type="uniqueidentifier" />
+    <Property Name="Distance_1ID" Type="uniqueidentifier" />
+    <Property Name="UsedCars" Type="int" />
+    <Property Name="OwnService" Type="int" />
+    <Property Name="ASMAP" Type="int" />
+    <Property Name="Dir1" Type="uniqueidentifier" />
+    <Property Name="Dir2" Type="uniqueidentifier" />
+    <Property Name="Dir3" Type="uniqueidentifier" />
+    <Property Name="TransportType1" Type="uniqueidentifier" />
+    <Property Name="TransportType2" Type="uniqueidentifier" />
+    <Property Name="TransportType3" Type="uniqueidentifier" />
+    <Property Name="AuthorID" Type="uniqueidentifier" />
+    <Property Name="Owner2ID" Type="uniqueidentifier" />
+    <Property Name="Owner3ID" Type="uniqueidentifier" />
+    <Property Name="Owner4ID" Type="uniqueidentifier" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountID" Type="uniqueidentifier" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TimeZone" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="Dear" Type="nvarchar" MaxLength="100" />
+    <Property Name="SalutationID" Type="uniqueidentifier" />
+    <Property Name="GenderID" Type="nvarchar" MaxLength="250" />
+    <Property Name="DepartmentID" Type="uniqueidentifier" />
+    <Property Name="JobID" Type="uniqueidentifier" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="250" />
+    <Property Name="OwnerID" Type="uniqueidentifier" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="AddressTypeID" Type="uniqueidentifier" />
+    <Property Name="CityID" Type="uniqueidentifier" />
+    <Property Name="StateID" Type="uniqueidentifier" />
+    <Property Name="CountryID" Type="uniqueidentifier" />
+    <Property Name="TerritoryID" Type="uniqueidentifier" />
+    <Property Name="ZIP" Type="nvarchar" MaxLength="20" />
+    <Property Name="Communication1" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication3" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication4" Type="nvarchar" MaxLength="250" />
+    <Property Name="Communication1TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication2TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication3TypeID" Type="uniqueidentifier" />
+    <Property Name="Communication4TypeID" Type="uniqueidentifier" />
+    <Property Name="DecisionRoleID" Type="uniqueidentifier" />
+    <Property Name="Description" Type="image" />
+    <Property Name="DoNotCall" Type="int" />
+    <Property Name="EmailOptOut" Type="int" />
+    <Property Name="ContactTypeID" Type="uniqueidentifier" />
+    <Property Name="Photo" Type="image" />
+    <Property Name="AuthorID" Type="uniqueidentifier" />
+    <Property Name="DocumentName" Type="nvarchar" MaxLength="250" />
+    <Property Name="DocumentBasis" Type="nvarchar" MaxLength="250" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_ContactCommunication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="ContactID" Type="uniqueidentifier" />
+    <Property Name="Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CommunicationTypeID" Type="uniqueidentifier" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Digits" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_Field">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_Job">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FAccountFieldID">
+    <End Role="tbl_Field" Type="Self.tbl_Field" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Field">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="FieldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountOwnerID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountPrimaryContactID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="PrimaryContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactAccountID">
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactCommContactID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_ContactCommunication" Type="Self.tbl_ContactCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ContactCommunication">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactJobID">
+    <End Role="tbl_Job" Type="Self.tbl_Job" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactOwnerID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Contact1" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact1">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK123818Owner2IDtbl_Account">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="Owner2ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK123818Owner3IDtbl_Account">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="Owner3ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK123818Owner4IDtbl_Account">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="Owner4ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK145227AuthorIDtbl_Contact">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Contact1" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact1">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK2386AuthorIDtbl_Account">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище AtTSModelContainer">
+    <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
+      <End Role="tbl_Field" EntitySet="tbl_Field" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountOwnerID" Association="Self.FAccountOwnerID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountPrimaryContactID" Association="Self.FAccountPrimaryContactID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FContactAccountID" Association="Self.FContactAccountID">
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FContactCommContactID" Association="Self.FContactCommContactID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_ContactCommunication" EntitySet="tbl_ContactCommunication" />
+    </AssociationSet>
+    <AssociationSet Name="FContactJobID" Association="Self.FContactJobID">
+      <End Role="tbl_Job" EntitySet="tbl_Job" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FContactOwnerID" Association="Self.FContactOwnerID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Contact1" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK123818Owner2IDtbl_Account" Association="Self.FK123818Owner2IDtbl_Account">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK123818Owner3IDtbl_Account" Association="Self.FK123818Owner3IDtbl_Account">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK123818Owner4IDtbl_Account" Association="Self.FK123818Owner4IDtbl_Account">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK145227AuthorIDtbl_Contact" Association="Self.FK145227AuthorIDtbl_Contact">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Contact1" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK2386AuthorIDtbl_Account" Association="Self.FK2386AuthorIDtbl_Account">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

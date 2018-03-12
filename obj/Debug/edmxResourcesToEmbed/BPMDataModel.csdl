@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AtBPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OwnershipId" Type="Guid" />
+    <Property Name="PrimaryContactId" Type="Guid" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="OwnerId" Type="Guid" />
+    <Property Name="IndustryId" Type="Guid" />
+    <Property Name="Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeId" Type="Guid" />
+    <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdditionalPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Web" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressTypeId" Type="Guid" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="RegionId" Type="Guid" />
+    <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="AccountCategoryId" Type="Guid" />
+    <Property Name="EmployeesNumberId" Type="Guid" />
+    <Property Name="AnnualRevenueId" Type="Guid" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AlternativeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="GPSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GPSE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PriceListId" Type="Guid" />
+    <Property Name="Completeness" Type="Int32" Nullable="false" />
+    <Property Name="AccountLogoId" Type="Guid" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK4vuAoQFpJNm3KVrfzlDHOztOhk" FromRole="Account" ToRole="Account1" />
+    <NavigationProperty Name="Account2" Relationship="Self.FK4vuAoQFpJNm3KVrfzlDHOztOhk" FromRole="Account1" ToRole="Account" />
+    <NavigationProperty Name="Contact" Relationship="Self.FKgorxorMDKx0GwMudqP9wBV7J8o" FromRole="Account" ToRole="Contact" />
+    <NavigationProperty Name="Activity" Relationship="Self.FKirx80iw4YX19Eui684F7BsFSAp8" FromRole="Account" ToRole="Activity" />
+    <NavigationProperty Name="Contact1" Relationship="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA" FromRole="Account" ToRole="Contact" />
+    <NavigationProperty Name="Contact2" Relationship="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" FromRole="Account" ToRole="Contact" />
+  </EntityType>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="7" />
+    <Property Name="DueDate" Type="DateTime" Precision="7" />
+    <Property Name="PriorityId" Type="Guid" />
+    <Property Name="AuthorId" Type="Guid" />
+    <Property Name="RemindToAuthor" Type="Boolean" Nullable="false" />
+    <Property Name="RemindToAuthorDate" Type="DateTime" Precision="3" />
+    <Property Name="OwnerId" Type="Guid" />
+    <Property Name="RemindToOwner" Type="Boolean" Nullable="false" />
+    <Property Name="RemindToOwnerDate" Type="DateTime" Precision="3" />
+    <Property Name="TypeId" Type="Guid" />
+    <Property Name="ShowInScheduler" Type="Boolean" Nullable="false" />
+    <Property Name="StatusId" Type="Guid" />
+    <Property Name="ResultId" Type="Guid" />
+    <Property Name="DetailedResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeZoneId" Type="Guid" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="ContactId" Type="Guid" />
+    <Property Name="Recepient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CopyRecepient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BlindCopyRecepient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SendDate" Type="DateTime" Precision="3" />
+    <Property Name="EmailSendStatusId" Type="Guid" />
+    <Property Name="ErrorOnSend" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DurationInMinutes" Type="Int32" Nullable="false" />
+    <Property Name="DurationInMnutesAndHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ActivityCategoryId" Type="Guid" />
+    <Property Name="AllowedResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByInvCRM" Type="Boolean" Nullable="false" />
+    <Property Name="MessageTypeId" Type="Guid" />
+    <Property Name="Sender" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="IsHtmlBody" Type="Boolean" Nullable="false" />
+    <Property Name="HtmlBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MailHash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProcessElementId" Type="Guid" />
+    <Property Name="GlobalActivityID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvoiceId" Type="Guid" />
+    <Property Name="LeadId" Type="Guid" />
+    <Property Name="OpportunityId" Type="Guid" />
+    <Property Name="ProjectId" Type="Guid" />
+    <Property Name="OrderId" Type="Guid" />
+    <Property Name="FullProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsNeedProcess" Type="Boolean" Nullable="false" />
+    <Property Name="ActivityConnectionId" Type="Guid" />
+    <Property Name="ContractId" Type="Guid" />
+    <Property Name="DocumentId" Type="Guid" />
+    <Property Name="EventId" Type="Guid" />
+    <Property Name="CaseId" Type="Guid" />
+    <Property Name="ChangeId" Type="Guid" />
+    <Property Name="ReleaseId" Type="Guid" />
+    <Property Name="ProblemId" Type="Guid" />
+    <Property Name="QueueItemId" Type="Guid" />
+    <Property Name="OrganizerId" Type="Guid" />
+    <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsNotPublished" Type="Boolean" Nullable="false" />
+    <Property Name="CallDirectionId" Type="Guid" />
+    <Property Name="ConfItemId" Type="Guid" />
+    <Property Name="HeaderProperties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EnrchEmailDataId" Type="Guid" />
+    <Property Name="EnrichStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceProcessed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FKirx80iw4YX19Eui684F7BsFSAp8" FromRole="Activity" ToRole="Account" />
+    <NavigationProperty Name="Contact" Relationship="Self.FK1pn73RoCVd57Tu6HonzfFfI33D8" FromRole="Activity" ToRole="Contact" />
+    <NavigationProperty Name="Contact1" Relationship="Self.FKD8t0odGZO4owpC6Kfp3piB5CYgQ" FromRole="Activity" ToRole="Contact" />
+    <NavigationProperty Name="Activity1" Relationship="Self.FKPkYRMonMU4O22bg1UtAWBnc3Y8" FromRole="Activity" ToRole="Activity1" />
+    <NavigationProperty Name="Activity2" Relationship="Self.FKPkYRMonMU4O22bg1UtAWBnc3Y8" FromRole="Activity1" ToRole="Activity" />
+    <NavigationProperty Name="Contact2" Relationship="Self.FKpTKvSEK1iTkF85m8so43cNMPM4" FromRole="Activity" ToRole="Contact" />
+    <NavigationProperty Name="Contact3" Relationship="Self.FKxLbw957waHhgItDgCsX3oYCAFMs" FromRole="Activity" ToRole="Contact" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="Dear" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalutationTypeId" Type="Guid" />
+    <Property Name="GenderId" Type="Guid" />
+    <Property Name="OwnerId" Type="Guid" />
+    <Property Name="DecisionRoleId" Type="Guid" />
+    <Property Name="JobId" Type="Guid" />
+    <Property Name="JobTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartmentId" Type="Guid" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Skype" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="RegionId" Type="Guid" />
+    <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="DoNotUseEmail" Type="Boolean" Nullable="false" />
+    <Property Name="DoNotUseCall" Type="Boolean" Nullable="false" />
+    <Property Name="DoNotUseFax" Type="Boolean" Nullable="false" />
+    <Property Name="DoNotUseSms" Type="Boolean" Nullable="false" />
+    <Property Name="DoNotUseMail" Type="Boolean" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeId" Type="Guid" />
+    <Property Name="AddressTypeId" Type="Guid" />
+    <Property Name="Facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LinkedIn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FacebookId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LinkedInId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TwitterId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TwitterAFDAId" Type="Guid" />
+    <Property Name="FacebookAFDAId" Type="Guid" />
+    <Property Name="LinkedInAFDAId" Type="Guid" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="PhotoId" Type="Guid" />
+    <Property Name="GPSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GPSE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GivenName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+    <Property Name="IsNonActualEmail" Type="Boolean" Nullable="false" />
+    <Property Name="RId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Completeness" Type="Int32" Nullable="false" />
+    <Property Name="LanguageId" Type="Guid" />
+    <NavigationProperty Name="Account" Relationship="Self.FKgorxorMDKx0GwMudqP9wBV7J8o" FromRole="Contact" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA" FromRole="Contact" ToRole="Account" />
+    <NavigationProperty Name="Account2" Relationship="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" FromRole="Contact" ToRole="Account" />
+    <NavigationProperty Name="Activity" Relationship="Self.FK1pn73RoCVd57Tu6HonzfFfI33D8" FromRole="Contact" ToRole="Activity" />
+    <NavigationProperty Name="Activity1" Relationship="Self.FKD8t0odGZO4owpC6Kfp3piB5CYgQ" FromRole="Contact" ToRole="Activity" />
+    <NavigationProperty Name="Activity2" Relationship="Self.FKpTKvSEK1iTkF85m8so43cNMPM4" FromRole="Contact" ToRole="Activity" />
+    <NavigationProperty Name="Activity3" Relationship="Self.FKxLbw957waHhgItDgCsX3oYCAFMs" FromRole="Contact" ToRole="Activity" />
+    <NavigationProperty Name="Contact1" Relationship="Self.FKgQvtVsBhT8OxyjMLvfTbOUDGs8o" FromRole="Contact" ToRole="Contact1" />
+    <NavigationProperty Name="Contact2" Relationship="Self.FKgQvtVsBhT8OxyjMLvfTbOUDGs8o" FromRole="Contact1" ToRole="Contact" />
+    <Property Name="UsrDocumentBasis" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UsrDocumentName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UsrAuthorId" Type="Guid" />
+    <NavigationProperty Name="Contact11" Relationship="AtBPMModel.FKF0cPIiQBZRg5tlGUwAGjqi46ySU" FromRole="Contact" ToRole="Contact1" />
+    <NavigationProperty Name="Contact21" Relationship="AtBPMModel.FKF0cPIiQBZRg5tlGUwAGjqi46ySU" FromRole="Contact1" ToRole="Contact" />
+    <NavigationProperty Name="Job" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Contact" ToRole="Job" />
+    <NavigationProperty Name="ContactCommunication" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="Contact" ToRole="ContactCommunication" />
+  </EntityType>
+  <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Account1" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKgorxorMDKx0GwMudqP9wBV7J8o">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKirx80iw4YX19Eui684F7BsFSAp8">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKMpbRxbvqMdsx1Iial2kKB1MywA">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKq6UZ1UcGWiEwEBUKXX6k11VxtVc">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="PrimaryContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK1pn73RoCVd57Tu6HonzfFfI33D8">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="OrganizerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKD8t0odGZO4owpC6Kfp3piB5CYgQ">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPkYRMonMU4O22bg1UtAWBnc3Y8">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+    <End Role="Activity1" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity1">
+        <PropertyRef Name="ActivityConnectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKpTKvSEK1iTkF85m8so43cNMPM4">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKxLbw957waHhgItDgCsX3oYCAFMs">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKgQvtVsBhT8OxyjMLvfTbOUDGs8o">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Contact1" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact1">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AtBPMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Account" EntityType="Self.Account" />
+    <EntitySet Name="Activity" EntityType="Self.Activity" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" />
+    <AssociationSet Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk" Association="Self.FK4vuAoQFpJNm3KVrfzlDHOztOhk">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Account1" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKgorxorMDKx0GwMudqP9wBV7J8o" Association="Self.FKgorxorMDKx0GwMudqP9wBV7J8o">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKirx80iw4YX19Eui684F7BsFSAp8" Association="Self.FKirx80iw4YX19Eui684F7BsFSAp8">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKMpbRxbvqMdsx1Iial2kKB1MywA" Association="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" Association="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK1pn73RoCVd57Tu6HonzfFfI33D8" Association="Self.FK1pn73RoCVd57Tu6HonzfFfI33D8">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKD8t0odGZO4owpC6Kfp3piB5CYgQ" Association="Self.FKD8t0odGZO4owpC6Kfp3piB5CYgQ">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKPkYRMonMU4O22bg1UtAWBnc3Y8" Association="Self.FKPkYRMonMU4O22bg1UtAWBnc3Y8">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="Activity1" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKpTKvSEK1iTkF85m8so43cNMPM4" Association="Self.FKpTKvSEK1iTkF85m8so43cNMPM4">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKxLbw957waHhgItDgCsX3oYCAFMs" Association="Self.FKxLbw957waHhgItDgCsX3oYCAFMs">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKgQvtVsBhT8OxyjMLvfTbOUDGs8o" Association="Self.FKgQvtVsBhT8OxyjMLvfTbOUDGs8o">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Contact1" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU" Association="AtBPMModel.FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Contact1" EntitySet="Contact" />
+    </AssociationSet>
+    <EntitySet Name="Job" EntityType="AtBPMModel.Job" />
+    <AssociationSet Name="FKga6GOMY3yTsBM5UObVXJs98Qv0" Association="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <EntitySet Name="ContactCommunication" EntityType="AtBPMModel.ContactCommunication" />
+    <AssociationSet Name="FK8TncqtOS6Zrgaph0QkfBsU2km8" Association="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ContactCommunication" EntitySet="ContactCommunication" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Contact" Role="Contact1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact1">
+        <PropertyRef Name="UsrAuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Job" ToRole="Contact" />
+  </EntityType>
+  <Association Name="FKga6GOMY3yTsBM5UObVXJs98Qv0">
+    <End Type="AtBPMModel.Job" Role="Job" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ContactCommunication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="CommunicationTypeId" Type="Guid" />
+    <Property Name="ContactId" Type="Guid" />
+    <Property Name="Position" Type="Int32" Nullable="false" />
+    <Property Name="SocialMediaId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SearchNumber" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsCreatedBySynchronization" Type="Boolean" Nullable="false" />
+    <Property Name="NonActual" Type="Boolean" Nullable="false" />
+    <Property Name="NonActualReasonId" Type="Guid" />
+    <Property Name="DateSetNonActual" Type="DateTime" Precision="0" />
+    <Property Name="ExternalCommunicationType" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="ContactCommunication" ToRole="Contact" />
+  </EntityType>
+  <Association Name="FK8TncqtOS6Zrgaph0QkfBsU2km8">
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.ContactCommunication" Role="ContactCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactCommunication">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

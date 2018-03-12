@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AtBPMModelContainer" CdmEntityContainer="AtBPMEntities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="AtBPMModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="UsrScaniaCount" ColumnName="UsrScaniaCount" />
+          <ScalarProperty Name="UsrB7Count" ColumnName="UsrB7Count" />
+          <ScalarProperty Name="UsrAuthorId" ColumnName="UsrAuthorId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="OwnershipId" ColumnName="OwnershipId" />
+          <ScalarProperty Name="PrimaryContactId" ColumnName="PrimaryContactId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AdditionalPhone" ColumnName="AdditionalPhone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Web" ColumnName="Web" />
+          <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="AccountCategoryId" ColumnName="AccountCategoryId" />
+          <ScalarProperty Name="EmployeesNumberId" ColumnName="EmployeesNumberId" />
+          <ScalarProperty Name="AnnualRevenueId" ColumnName="AnnualRevenueId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="AlternativeName" ColumnName="AlternativeName" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="GPSN" ColumnName="GPSN" />
+          <ScalarProperty Name="GPSE" ColumnName="GPSE" />
+          <ScalarProperty Name="PriceListId" ColumnName="PriceListId" />
+          <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+          <ScalarProperty Name="AccountLogoId" ColumnName="AccountLogoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Activity">
+      <EntityTypeMapping TypeName="AtBPMModel.Activity">
+        <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+          <ScalarProperty Name="RemindToAuthor" ColumnName="RemindToAuthor" />
+          <ScalarProperty Name="RemindToAuthorDate" ColumnName="RemindToAuthorDate" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="RemindToOwner" ColumnName="RemindToOwner" />
+          <ScalarProperty Name="RemindToOwnerDate" ColumnName="RemindToOwnerDate" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="ShowInScheduler" ColumnName="ShowInScheduler" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+          <ScalarProperty Name="DetailedResult" ColumnName="DetailedResult" />
+          <ScalarProperty Name="TimeZoneId" ColumnName="TimeZoneId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="Recepient" ColumnName="Recepient" />
+          <ScalarProperty Name="CopyRecepient" ColumnName="CopyRecepient" />
+          <ScalarProperty Name="BlindCopyRecepient" ColumnName="BlindCopyRecepient" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="EmailSendStatusId" ColumnName="EmailSendStatusId" />
+          <ScalarProperty Name="ErrorOnSend" ColumnName="ErrorOnSend" />
+          <ScalarProperty Name="DurationInMinutes" ColumnName="DurationInMinutes" />
+          <ScalarProperty Name="DurationInMnutesAndHours" ColumnName="DurationInMnutesAndHours" />
+          <ScalarProperty Name="ActivityCategoryId" ColumnName="ActivityCategoryId" />
+          <ScalarProperty Name="AllowedResult" ColumnName="AllowedResult" />
+          <ScalarProperty Name="CreatedByInvCRM" ColumnName="CreatedByInvCRM" />
+          <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="IsHtmlBody" ColumnName="IsHtmlBody" />
+          <ScalarProperty Name="HtmlBody" ColumnName="HtmlBody" />
+          <ScalarProperty Name="MailHash" ColumnName="MailHash" />
+          <ScalarProperty Name="ProcessElementId" ColumnName="ProcessElementId" />
+          <ScalarProperty Name="GlobalActivityID" ColumnName="GlobalActivityID" />
+          <ScalarProperty Name="UserEmailAddress" ColumnName="UserEmailAddress" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+          <ScalarProperty Name="OpportunityId" ColumnName="OpportunityId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="FullProjectName" ColumnName="FullProjectName" />
+          <ScalarProperty Name="IsNeedProcess" ColumnName="IsNeedProcess" />
+          <ScalarProperty Name="ActivityConnectionId" ColumnName="ActivityConnectionId" />
+          <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+          <ScalarProperty Name="ChangeId" ColumnName="ChangeId" />
+          <ScalarProperty Name="ReleaseId" ColumnName="ReleaseId" />
+          <ScalarProperty Name="ProblemId" ColumnName="ProblemId" />
+          <ScalarProperty Name="QueueItemId" ColumnName="QueueItemId" />
+          <ScalarProperty Name="OrganizerId" ColumnName="OrganizerId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="IsNotPublished" ColumnName="IsNotPublished" />
+          <ScalarProperty Name="CallDirectionId" ColumnName="CallDirectionId" />
+          <ScalarProperty Name="ConfItemId" ColumnName="ConfItemId" />
+          <ScalarProperty Name="HeaderProperties" ColumnName="HeaderProperties" />
+          <ScalarProperty Name="EnrchEmailDataId" ColumnName="EnrchEmailDataId" />
+          <ScalarProperty Name="EnrichStatus" ColumnName="EnrichStatus" />
+          <ScalarProperty Name="ServiceProcessed" ColumnName="ServiceProcessed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contact">
+      <EntityTypeMapping TypeName="AtBPMModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="UsrAuthorId" ColumnName="UsrAuthorId" />
+          <ScalarProperty Name="UsrDocumentName" ColumnName="UsrDocumentName" />
+          <ScalarProperty Name="UsrDocumentBasis" ColumnName="UsrDocumentBasis" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Dear" ColumnName="Dear" />
+          <ScalarProperty Name="SalutationTypeId" ColumnName="SalutationTypeId" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="DecisionRoleId" ColumnName="DecisionRoleId" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="DoNotUseEmail" ColumnName="DoNotUseEmail" />
+          <ScalarProperty Name="DoNotUseCall" ColumnName="DoNotUseCall" />
+          <ScalarProperty Name="DoNotUseFax" ColumnName="DoNotUseFax" />
+          <ScalarProperty Name="DoNotUseSms" ColumnName="DoNotUseSms" />
+          <ScalarProperty Name="DoNotUseMail" ColumnName="DoNotUseMail" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
+          <ScalarProperty Name="LinkedInId" ColumnName="LinkedInId" />
+          <ScalarProperty Name="TwitterId" ColumnName="TwitterId" />
+          <ScalarProperty Name="ContactPhoto" ColumnName="ContactPhoto" />
+          <ScalarProperty Name="TwitterAFDAId" ColumnName="TwitterAFDAId" />
+          <ScalarProperty Name="FacebookAFDAId" ColumnName="FacebookAFDAId" />
+          <ScalarProperty Name="LinkedInAFDAId" ColumnName="LinkedInAFDAId" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+          <ScalarProperty Name="GPSN" ColumnName="GPSN" />
+          <ScalarProperty Name="GPSE" ColumnName="GPSE" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="IsNonActualEmail" ColumnName="IsNonActualEmail" />
+          <ScalarProperty Name="RId" ColumnName="RId" />
+          <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job">
+      <EntityTypeMapping TypeName="AtBPMModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactCommunication">
+      <EntityTypeMapping TypeName="AtBPMModel.ContactCommunication">
+        <MappingFragment StoreEntitySet="ContactCommunication">
+          <ScalarProperty Name="ExternalCommunicationType" ColumnName="ExternalCommunicationType" />
+          <ScalarProperty Name="DateSetNonActual" ColumnName="DateSetNonActual" />
+          <ScalarProperty Name="NonActualReasonId" ColumnName="NonActualReasonId" />
+          <ScalarProperty Name="NonActual" ColumnName="NonActual" />
+          <ScalarProperty Name="IsCreatedBySynchronization" ColumnName="IsCreatedBySynchronization" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+          <ScalarProperty Name="SocialMediaId" ColumnName="SocialMediaId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="CommunicationTypeId" ColumnName="CommunicationTypeId" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountIndustry">
+      <EntityTypeMapping TypeName="AtBPMModel.AccountIndustry">
+        <MappingFragment StoreEntitySet="AccountIndustry">
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

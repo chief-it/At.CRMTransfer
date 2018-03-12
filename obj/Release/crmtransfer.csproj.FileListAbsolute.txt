@@ -1,0 +1,13 @@
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\crmtransfer.exe.config
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\crmtransfer.exe
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\crmtransfer.pdb
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\EntityFramework.dll
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\EntityFramework.SqlServer.dll
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\log4net.dll
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\EntityFramework.xml
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\EntityFramework.SqlServer.xml
+C:\#Dev\At\Перенос\crmtransfer\bin\Release\log4net.xml
+C:\#Dev\At\Перенос\crmtransfer\obj\Release\crmtransfer.csproj.CoreCompileInputs.cache
+C:\#Dev\At\Перенос\crmtransfer\obj\Release\crmtransfer.exe
+C:\#Dev\At\Перенос\crmtransfer\obj\Release\crmtransfer.pdb
+C:\#Dev\At\Перенос\crmtransfer\obj\Release\crmtransfer.csprojResolveAssemblyReference.cache

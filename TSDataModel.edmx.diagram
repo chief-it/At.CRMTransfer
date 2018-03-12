@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d77c406a475344d0aa289d7729688cdd" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AtTSModel.tbl_Contact" Width="1.5" PointX="6.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_Job" Width="1.5" PointX="8.875" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="AtTSModel.FContactJobID" ManuallyRouted="false" />
+        <AssociationConnector Association="AtTSModel.FContactOwnerID" ManuallyRouted="false" />
+        <AssociationConnector Association="AtTSModel.FK145227AuthorIDtbl_Contact" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_ContactCommunication" Width="1.5" PointX="9" PointY="6.375" />
+        <AssociationConnector Association="AtTSModel.FContactCommContactID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_Account" Width="1.5" PointX="4.5" PointY="1" />
+        <AssociationConnector Association="AtTSModel.FAccountOwnerID" />
+        <AssociationConnector Association="AtTSModel.FAccountPrimaryContactID" />
+        <AssociationConnector Association="AtTSModel.FContactAccountID" />
+        <AssociationConnector Association="AtTSModel.FK123818Owner2IDtbl_Account" />
+        <AssociationConnector Association="AtTSModel.FK123818Owner3IDtbl_Account" />
+        <AssociationConnector Association="AtTSModel.FK123818Owner4IDtbl_Account" />
+        <AssociationConnector Association="AtTSModel.FK2386AuthorIDtbl_Account" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_Field" Width="1.5" PointX="2.5" PointY="1" />
+        <AssociationConnector Association="AtTSModel.FAccountFieldID" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
