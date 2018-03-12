@@ -18,6 +18,8 @@ namespace crmtransfer
         public tbl_Account()
         {
             this.tbl_Contact2 = new HashSet<tbl_Contact>();
+            this.tbl_AccountCommunication = new HashSet<tbl_AccountCommunication>();
+            this.tbl_ContactCareer = new HashSet<tbl_ContactCareer>();
         }
     
         public System.Guid ID { get; set; }
@@ -82,5 +84,9 @@ namespace crmtransfer
         public virtual tbl_Contact tbl_Contact5 { get; set; }
         public virtual tbl_Contact tbl_Contact6 { get; set; }
         public virtual tbl_Field tbl_Field { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_AccountCommunication> tbl_AccountCommunication { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ContactCareer> tbl_ContactCareer { get; set; }
     }
 }

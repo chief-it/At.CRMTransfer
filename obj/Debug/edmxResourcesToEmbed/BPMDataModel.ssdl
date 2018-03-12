@@ -44,6 +44,24 @@
     <Property Name="UsrB7Count" Type="int" Nullable="false" />
     <Property Name="UsrScaniaCount" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="AccountCommunication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="CommunicationTypeId" Type="uniqueidentifier" />
+    <Property Name="Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="SocialMediaId" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SearchNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="Primary" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="AccountIndustry">
     <Key>
       <PropertyRef Name="Id" />
@@ -319,6 +337,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AccountCommunication" Type="Self.AccountCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountCommunication">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKgorxorMDKx0GwMudqP9wBV7J8o">
     <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -429,6 +461,7 @@
   </Association>
   <EntityContainer Name="Хранилище AtBPMModelContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountCommunication" EntityType="Self.AccountCommunication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccountIndustry" EntityType="Self.AccountIndustry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
@@ -461,6 +494,10 @@
     <AssociationSet Name="FKga6GOMY3yTsBM5UObVXJs98Qv0" Association="Self.FKga6GOMY3yTsBM5UObVXJs98Qv0">
       <End Role="Job" EntitySet="Job" />
       <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo" Association="Self.FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountCommunication" EntitySet="AccountCommunication" />
     </AssociationSet>
     <AssociationSet Name="FKgorxorMDKx0GwMudqP9wBV7J8o" Association="Self.FKgorxorMDKx0GwMudqP9wBV7J8o">
       <End Role="Contact" EntitySet="Contact" />

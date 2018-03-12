@@ -12,27 +12,19 @@ namespace crmtransfer
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_Job
+    public partial class tbl_AccountCommunication
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_Job()
-        {
-            this.tbl_Contact = new HashSet<tbl_Contact>();
-            this.tbl_ContactCareer = new HashSet<tbl_ContactCareer>();
-        }
-    
         public System.Guid ID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedByID { get; set; }
-        public Nullable<System.Guid> ModifiedByID { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string NameOf { get; set; }
+        public Nullable<System.Guid> ModifiedByID { get; set; }
+        public Nullable<System.Guid> AccountID { get; set; }
+        public string Number { get; set; }
+        public Nullable<System.Guid> CommunicationTypeID { get; set; }
+        public Nullable<int> Position { get; set; }
+        public string Digits { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_Contact> tbl_Contact { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_ContactCareer> tbl_ContactCareer { get; set; }
+        public virtual tbl_Account tbl_Account { get; set; }
     }
 }

@@ -51,6 +51,8 @@
     <NavigationProperty Name="Contact3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Account" ToRole="Contact" />
     <Property Name="UsrB7Count" Type="Int32" Nullable="false" />
     <Property Name="UsrScaniaCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AccountCommunication" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="Account" ToRole="AccountCommunication" />
+    <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4" FromRole="Account" ToRole="ContactCareer" />
   </EntityType>
   <EntityType Name="Activity">
     <Key>
@@ -213,6 +215,7 @@
     <NavigationProperty Name="Job" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Contact" ToRole="Job" />
     <NavigationProperty Name="ContactCommunication" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="Contact" ToRole="ContactCommunication" />
     <NavigationProperty Name="Account3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Contact" ToRole="Account" />
+    <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc" FromRole="Contact" ToRole="ContactCareer" />
   </EntityType>
   <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -417,6 +420,24 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Account" EntitySet="Account" />
     </AssociationSet>
+    <EntitySet Name="AccountCommunication" EntityType="AtBPMModel.AccountCommunication" />
+    <AssociationSet Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo" Association="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountCommunication" EntitySet="AccountCommunication" />
+    </AssociationSet>
+    <EntitySet Name="ContactCareer" EntityType="AtBPMModel.ContactCareer" />
+    <AssociationSet Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4" Association="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="ContactCareer" EntitySet="ContactCareer" />
+    </AssociationSet>
+    <AssociationSet Name="FK1GGqruqwumV4yn5W3rKML7MOVYc" Association="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ContactCareer" EntitySet="ContactCareer" />
+    </AssociationSet>
+    <AssociationSet Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" Association="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="ContactCareer" EntitySet="ContactCareer" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
     <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -443,6 +464,7 @@
     <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Contact" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Job" ToRole="Contact" />
+    <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" FromRole="Job" ToRole="ContactCareer" />
   </EntityType>
   <Association Name="FKga6GOMY3yTsBM5UObVXJs98Qv0">
     <End Type="AtBPMModel.Job" Role="Job" Multiplicity="0..1" />
@@ -528,6 +550,105 @@
       </Principal>
       <Dependent Role="Account">
         <PropertyRef Name="UsrAuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountCommunication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="CommunicationTypeId" Type="Guid" />
+    <Property Name="Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="Position" Type="Int32" Nullable="false" />
+    <Property Name="SocialMediaId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SearchNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="Primary" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="AccountCommunication" ToRole="Account" />
+  </EntityType>
+  <Association Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.AccountCommunication" Role="AccountCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountCommunication">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ContactCareer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="ContactId" Type="Guid" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="DepartmentId" Type="Guid" />
+    <Property Name="JobId" Type="Guid" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Primary" Type="Boolean" Nullable="false" />
+    <Property Name="Current" Type="Boolean" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="DueDate" Type="DateTime" Precision="0" />
+    <Property Name="JobChangeReasonId" Type="Guid" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="DecisionRoleId" Type="Guid" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4" FromRole="ContactCareer" ToRole="Account" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc" FromRole="ContactCareer" ToRole="Contact" />
+    <NavigationProperty Name="Job" Relationship="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" FromRole="ContactCareer" ToRole="Job" />
+  </EntityType>
+  <Association Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactCareer">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK1GGqruqwumV4yn5W3rKML7MOVYc">
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactCareer">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+    <End Type="AtBPMModel.Job" Role="Job" Multiplicity="0..1" />
+    <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactCareer">
+        <PropertyRef Name="JobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

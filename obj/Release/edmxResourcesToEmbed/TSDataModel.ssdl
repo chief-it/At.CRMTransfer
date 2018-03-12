@@ -57,6 +57,21 @@
     <Property Name="Owner4ID" Type="uniqueidentifier" />
     <Property Name="Comment" Type="nvarchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="tbl_AccountCommunication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="AccountID" Type="uniqueidentifier" />
+    <Property Name="Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CommunicationTypeID" Type="uniqueidentifier" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Digits" Type="nvarchar" MaxLength="250" />
+  </EntityType>
   <EntityType Name="tbl_Contact">
     <Key>
       <PropertyRef Name="ID" />
@@ -102,6 +117,26 @@
     <Property Name="DocumentBasis" Type="nvarchar" MaxLength="250" />
     <Property Name="Comment" Type="nvarchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="tbl_ContactCareer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="ContactID" Type="uniqueidentifier" />
+    <Property Name="AccountID" Type="uniqueidentifier" />
+    <Property Name="JobID" Type="uniqueidentifier" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="250" />
+    <Property Name="DepartmentID" Type="uniqueidentifier" />
+    <Property Name="MotiveID" Type="uniqueidentifier" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="IsPrimary" Type="int" />
+    <Property Name="IsCurrent" Type="int" />
+  </EntityType>
   <EntityType Name="tbl_ContactCommunication">
     <Key>
       <PropertyRef Name="ID" />
@@ -142,6 +177,18 @@
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <Association Name="FAccountCommAccountID">
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+    <End Role="tbl_AccountCommunication" Type="Self.tbl_AccountCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_AccountCommunication">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FAccountFieldID">
     <End Role="tbl_Field" Type="Self.tbl_Field" Multiplicity="0..1" />
     <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
@@ -187,6 +234,42 @@
       </Principal>
       <Dependent Role="tbl_Contact">
         <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactCareerAccountID">
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+    <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ContactCareer">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactCareerContactID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ContactCareer">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactCareerJobID">
+    <End Role="tbl_Job" Type="Self.tbl_Job" Multiplicity="0..1" />
+    <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ContactCareer">
+        <PropertyRef Name="JobID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -288,10 +371,16 @@
   </Association>
   <EntityContainer Name="Хранилище AtTSModelContainer">
     <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AccountCommunication" EntityType="Self.tbl_AccountCommunication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ContactCareer" EntityType="Self.tbl_ContactCareer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FAccountCommAccountID" Association="Self.FAccountCommAccountID">
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+      <End Role="tbl_AccountCommunication" EntitySet="tbl_AccountCommunication" />
+    </AssociationSet>
     <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
       <End Role="tbl_Field" EntitySet="tbl_Field" />
       <End Role="tbl_Account" EntitySet="tbl_Account" />
@@ -307,6 +396,18 @@
     <AssociationSet Name="FContactAccountID" Association="Self.FContactAccountID">
       <End Role="tbl_Account" EntitySet="tbl_Account" />
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FContactCareerAccountID" Association="Self.FContactCareerAccountID">
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+      <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+    </AssociationSet>
+    <AssociationSet Name="FContactCareerContactID" Association="Self.FContactCareerContactID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+    </AssociationSet>
+    <AssociationSet Name="FContactCareerJobID" Association="Self.FContactCareerJobID">
+      <End Role="tbl_Job" EntitySet="tbl_Job" />
+      <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
     </AssociationSet>
     <AssociationSet Name="FContactCommContactID" Association="Self.FContactCommContactID">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />

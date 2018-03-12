@@ -57,6 +57,9 @@
     <Compile Include="Account.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AccountCommunication.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AccountIndustry.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
@@ -81,6 +84,9 @@
     <Compile Include="Contact.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContactCareer.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContactCommunication.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
@@ -92,7 +98,13 @@
     <Compile Include="tbl_Account.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_AccountCommunication.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Contact.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ContactCareer.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_ContactCommunication.cs">

@@ -277,7 +277,7 @@ namespace crmtransfer
                         break;
                 }
                 bpmCommunication.Number = communication.Number;
-                bpmCommunication.ContactId = dicContactsTSBPMIds[tsContactId];
+                bpmCommunication.ContactId = bpmContactId;//dicContactsTSBPMIds[tsContactId];
                 bpmCommunication.Position = 0;
                 bpmCommunication.SocialMediaId = "";
                 bpmCommunication.SearchNumber = communication.Number;
@@ -448,10 +448,219 @@ namespace crmtransfer
             outStr = "Сохраняем БД";
             Console.WriteLine(outStr); Log.Info(outStr);
             dbBPM.Configuration.AutoDetectChangesEnabled = true;
-            dbBPM.SaveChanges(); 
-            
+            dbBPM.SaveChanges();
 
-            outStr = "Грузим Author и Owner для контактов...";
+
+            outStr = "Грузим средства связи контрагентов...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var listAccountCommunication = dbTS.tbl_AccountCommunication.ToList();
+            progress = 0;
+            step = listAccountCommunication.Count / 20;
+            dbBPM.Configuration.AutoDetectChangesEnabled = false;
+            foreach (var communication in listAccountCommunication)
+            {
+                var bpmCommunication = new AccountCommunication()
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedOn = communication.CreatedOn,
+                    ModifiedOn = DateTime.Now
+                };
+                Guid tsAccountId = communication.AccountID ?? Guid.Empty;
+                if (tsAccountId == Guid.Empty)
+                {
+                    string errorStr = $"Контрагент с CommunicationId <{communication.ID}> не найден";
+                    Console.WriteLine(errorStr);
+                    Log.Info(errorStr);
+                    break;
+                }
+                Guid bpmAccountId = dicAccountsTSBPMIds[tsAccountId];
+                var dbBpmAccount = dbBPM.Account.Find(bpmAccountId);
+                if (dbBpmAccount == null)
+                {
+                    string errorStr = $"Контрагент с BpmId <{bpmAccountId}> не найден";
+                    Console.WriteLine(errorStr);
+                    Log.Info(errorStr);
+                    break;
+                }
+                switch (communication.CommunicationTypeID.ToString().ToUpper())
+                {
+                    case "FA08FC2A-9D55-40C9-9576-0017EAED3E49": //Мобильный
+                        bpmCommunication.CommunicationTypeId = new Guid("D4A2DC80-30CA-DF11-9B2A-001D60E938C6");
+                        dbBpmAccount.AdditionalPhone = communication.Number;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.AdditionalPhone).IsModified = true;
+                        break;
+                    case "DBCB6A43-D99F-45AE-9B41-037DE595242E": //Телефон
+                        bpmCommunication.CommunicationTypeId = new Guid("3DDDB3CC-53EE-49C4-A71F-E9E257F59E49");
+                        dbBpmAccount.Phone = communication.Number;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.Phone).IsModified = true;
+                        break;
+                    case "82696D8B-71AE-4BA4-94FD-3F77474D74E7": //Факс
+                        bpmCommunication.CommunicationTypeId = new Guid("9A7AB41B-67CC-DF11-9B2A-001D60E938C6");
+                        dbBpmAccount.Fax = communication.Number;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.Fax).IsModified = true;
+                        break;
+                    case "7A628D16-D7D0-4979-B8BA-B64EF54A0366": //Email
+                        bpmCommunication.CommunicationTypeId = new Guid("EE1C85C3-CFCB-DF11-9B2A-001D60E938C6");
+                        break;
+                    case "7B77F07B-9976-47D6-95AA-D161FF369D6D": //Web
+                        bpmCommunication.CommunicationTypeId = new Guid("6A8BA927-67CC-DF11-9B2A-001D60E938C6");
+                        dbBpmAccount.Web = communication.Number;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.Web).IsModified = true;
+                        break;
+                    default:
+                        string number = communication.Number;
+                        if (number.IndexOf("@") == (-1))
+                        {   //телефон
+                            bpmCommunication.CommunicationTypeId = new Guid("3DDDB3CC-53EE-49C4-A71F-E9E257F59E49");
+                            dbBpmAccount.Phone = communication.Number;
+                            dbBPM.Entry(dbBpmAccount).Property(c => c.Phone).IsModified = true;
+                        }
+                        else
+                        {   //email
+                            bpmCommunication.CommunicationTypeId = new Guid("EE1C85C3-CFCB-DF11-9B2A-001D60E938C6");
+                        }
+                        break;
+                }
+                bpmCommunication.Number = communication.Number ?? "";
+                bpmCommunication.AccountId = bpmAccountId;
+                bpmCommunication.Position = 0;
+                bpmCommunication.SocialMediaId = "";
+                bpmCommunication.SearchNumber = communication.Number ?? "0";
+                Log.Info($"communication.ID={communication}, communication.Number={communication.Number}, bpmCommunication.SearchNumber={bpmCommunication.SearchNumber}");
+                bpmCommunication.ProcessListeners = 0;
+                bpmCommunication.Primary = false;
+                dbBPM.AccountCommunication.Add(bpmCommunication);
+
+                progress++;
+                if ((progress % step) == 0)
+                {
+                    Log.Info($"{(int)(progress / step) * 5}%");
+                    Console.WriteLine($"{(int)(progress / step) * 5}%");
+                }
+
+                //dbBPM.Entry(dbBpmContact).State = EntityState.Modified;
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.Configuration.AutoDetectChangesEnabled = true;
+            try
+            {
+                dbBPM.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbExc)
+            {
+                string errorStr = "";
+                foreach(var error in dbExc.EntityValidationErrors)
+                {
+                    foreach (var er in error.ValidationErrors)
+                    {
+                        errorStr += $"{er.PropertyName}\n";
+                    }
+                    errorStr += $"\n**********\n";
+                }
+                Log.Info(errorStr);
+                Console.WriteLine(errorStr);
+            }
+
+
+
+            /*tStr = "Грузим карьеру контакта...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var listContactCareer = dbTS.tbl_Contact.ToList();
+            progress = 0;
+            step = listContactCommunication.Count / 20;
+            dbBPM.Configuration.AutoDetectChangesEnabled = false;
+            foreach (var communication in listContactCommunication)
+            {
+                var bpmCommunication = new ContactCommunication()
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedOn = communication.CreatedOn,
+                    ModifiedOn = DateTime.Now
+                };
+                Guid tsContactId = communication.ContactID ?? Guid.Empty;
+                if (tsContactId == Guid.Empty)
+                {
+                    string errorStr = $"Контакт с CommunicationId <{communication.ID}> не найден";
+                    Console.WriteLine(errorStr);
+                    Log.Info(errorStr);
+                    break;
+                }
+                Guid bpmContactId = dicContactsTSBPMIds[tsContactId];
+                var dbBpmContact = dbBPM.Contact.Find(bpmContactId);
+                if (dbBpmContact == null)
+                {
+                    string errorStr = $"Контакт с BpmId <{bpmContactId}> не найден";
+                    Console.WriteLine(errorStr);
+                    Log.Info(errorStr);
+                    break;
+                }
+                switch (communication.CommunicationTypeID.ToString().ToUpper())
+                {
+                    case "FA08FC2A-9D55-40C9-9576-0017EAED3E49": //Мобильный
+                        bpmCommunication.CommunicationTypeId = new Guid("D4A2DC80-30CA-DF11-9B2A-001D60E938C6");
+                        dbBpmContact.MobilePhone = communication.Number;
+                        dbBPM.Entry(dbBpmContact).Property(c => c.MobilePhone).IsModified = true;
+                        break;
+                    case "DBCB6A43-D99F-45AE-9B41-037DE595242E": //Телефон
+                        bpmCommunication.CommunicationTypeId = new Guid("3DDDB3CC-53EE-49C4-A71F-E9E257F59E49");
+                        dbBpmContact.Phone = communication.Number;
+                        dbBPM.Entry(dbBpmContact).Property(c => c.Phone).IsModified = true;
+                        break;
+                    case "82696D8B-71AE-4BA4-94FD-3F77474D74E7": //Факс
+                        bpmCommunication.CommunicationTypeId = new Guid("9A7AB41B-67CC-DF11-9B2A-001D60E938C6");
+                        break;
+                    case "7A628D16-D7D0-4979-B8BA-B64EF54A0366": //Email
+                        bpmCommunication.CommunicationTypeId = new Guid("EE1C85C3-CFCB-DF11-9B2A-001D60E938C6");
+                        dbBpmContact.Email = communication.Number;
+                        dbBPM.Entry(dbBpmContact).Property(c => c.Email).IsModified = true;
+                        break;
+                    case "7B77F07B-9976-47D6-95AA-D161FF369D6D": //Web
+                        bpmCommunication.CommunicationTypeId = new Guid("6A8BA927-67CC-DF11-9B2A-001D60E938C6");
+                        break;
+                    default:
+                        string number = communication.Number;
+                        if (number.IndexOf("@") == (-1))
+                        {   //телефон
+                            bpmCommunication.CommunicationTypeId = new Guid("3DDDB3CC-53EE-49C4-A71F-E9E257F59E49");
+                            dbBpmContact.Phone = communication.Number;
+                            dbBPM.Entry(dbBpmContact).Property(c => c.Phone).IsModified = true;
+                        }
+                        else
+                        {   //email
+                            bpmCommunication.CommunicationTypeId = new Guid("EE1C85C3-CFCB-DF11-9B2A-001D60E938C6");
+                            dbBpmContact.Email = communication.Number;
+                            dbBPM.Entry(dbBpmContact).Property(c => c.Email).IsModified = true;
+                        }
+                        break;
+                }
+                bpmCommunication.Number = communication.Number;
+                bpmCommunication.ContactId = bpmContactId;//dicContactsTSBPMIds[tsContactId];
+                bpmCommunication.Position = 0;
+                bpmCommunication.SocialMediaId = "";
+                bpmCommunication.SearchNumber = communication.Number;
+                bpmCommunication.ProcessListeners = 0;
+                bpmCommunication.IsCreatedBySynchronization = false;
+                bpmCommunication.NonActual = false;
+                bpmCommunication.ExternalCommunicationType = "";
+                dbBPM.ContactCommunication.Add(bpmCommunication);
+
+                progress++;
+                if ((progress % step) == 0)
+                {
+                    Log.Info($"{(int)(progress / step) * 5}%");
+                    Console.WriteLine($"{(int)(progress / step) * 5}%");
+                }
+
+                //dbBPM.Entry(dbBpmContact).State = EntityState.Modified;
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.Configuration.AutoDetectChangesEnabled = true;
+            dbBPM.SaveChanges();
+            */
+
+            outStr = "Грузим Author, Owner, Account для контактов...";
             Console.WriteLine(outStr); Log.Info(outStr);
             progress = 0;
             step = listTSContacts.Count / 20;
@@ -462,6 +671,12 @@ namespace crmtransfer
                 var dbBpmContact = dbBPM.Contact.Find(bpmContactId);
                 if (dbBpmContact != null)
                 {
+                    Guid tsAccountId = contact.AccountID ?? Guid.Empty;
+                    if (tsAccountId != Guid.Empty)
+                    {
+                        dbBpmContact.AccountId = dicAccountsTSBPMIds[tsAccountId];
+                        dbBPM.Entry(dbBpmContact).Property(c => c.AccountId).IsModified = true;
+                    }
                     Guid authorId = contact.AuthorID ?? Guid.Empty;
                     if (authorId != Guid.Empty)
                     {

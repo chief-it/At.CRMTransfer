@@ -49,6 +49,24 @@
           <Property Name="UsrB7Count" Type="int" Nullable="false" />
           <Property Name="UsrScaniaCount" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AccountCommunication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+          <Property Name="CreatedById" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+          <Property Name="ModifiedById" Type="uniqueidentifier" />
+          <Property Name="CommunicationTypeId" Type="uniqueidentifier" />
+          <Property Name="Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" />
+          <Property Name="Position" Type="int" Nullable="false" />
+          <Property Name="SocialMediaId" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SearchNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProcessListeners" Type="int" Nullable="false" />
+          <Property Name="Primary" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="AccountIndustry">
           <Key>
             <PropertyRef Name="Id" />
@@ -203,6 +221,29 @@
           <Property Name="UsrDocumentName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="UsrAuthorId" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="ContactCareer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+          <Property Name="CreatedById" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+          <Property Name="ModifiedById" Type="uniqueidentifier" />
+          <Property Name="ContactId" Type="uniqueidentifier" />
+          <Property Name="AccountId" Type="uniqueidentifier" />
+          <Property Name="DepartmentId" Type="uniqueidentifier" />
+          <Property Name="JobId" Type="uniqueidentifier" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Primary" Type="bit" Nullable="false" />
+          <Property Name="Current" Type="bit" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="JobChangeReasonId" Type="uniqueidentifier" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProcessListeners" Type="int" Nullable="false" />
+          <Property Name="DecisionRoleId" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="ContactCommunication">
           <Key>
             <PropertyRef Name="Id" />
@@ -238,6 +279,20 @@
           <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ProcessListeners" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK1GGqruqwumV4yn5W3rKML7MOVYc">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContactCareer" Type="Self.ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK1pn73RoCVd57Tu6HonzfFfI33D8">
           <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
           <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
@@ -273,6 +328,20 @@
             </Principal>
             <Dependent Role="ContactCommunication">
               <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContactCareer" Type="Self.ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,6 +393,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AccountCommunication" Type="Self.AccountCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountCommunication">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKgorxorMDKx0GwMudqP9wBV7J8o">
           <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -357,6 +440,18 @@
             </Principal>
             <Dependent Role="Activity">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="ContactCareer" Type="Self.ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="JobId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -434,11 +529,17 @@
         </Association>
         <EntityContainer Name="Хранилище AtBPMModelContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountCommunication" EntityType="Self.AccountCommunication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountIndustry" EntityType="Self.AccountIndustry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactCareer" EntityType="Self.ContactCareer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactCommunication" EntityType="Self.ContactCommunication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK1GGqruqwumV4yn5W3rKML7MOVYc" Association="Self.FK1GGqruqwumV4yn5W3rKML7MOVYc">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
+          </AssociationSet>
           <AssociationSet Name="FK1pn73RoCVd57Tu6HonzfFfI33D8" Association="Self.FK1pn73RoCVd57Tu6HonzfFfI33D8">
             <End Role="Contact" EntitySet="Contact" />
             <End Role="Activity" EntitySet="Activity" />
@@ -450,6 +551,10 @@
           <AssociationSet Name="FK8TncqtOS6Zrgaph0QkfBsU2km8" Association="Self.FK8TncqtOS6Zrgaph0QkfBsU2km8">
             <End Role="Contact" EntitySet="Contact" />
             <End Role="ContactCommunication" EntitySet="ContactCommunication" />
+          </AssociationSet>
+          <AssociationSet Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4" Association="Self.FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
           </AssociationSet>
           <AssociationSet Name="FKD8t0odGZO4owpC6Kfp3piB5CYgQ" Association="Self.FKD8t0odGZO4owpC6Kfp3piB5CYgQ">
             <End Role="Contact" EntitySet="Contact" />
@@ -467,6 +572,10 @@
             <End Role="Job" EntitySet="Job" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
+          <AssociationSet Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo" Association="Self.FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountCommunication" EntitySet="AccountCommunication" />
+          </AssociationSet>
           <AssociationSet Name="FKgorxorMDKx0GwMudqP9wBV7J8o" Association="Self.FKgorxorMDKx0GwMudqP9wBV7J8o">
             <End Role="Contact" EntitySet="Contact" />
             <End Role="Account" EntitySet="Account" />
@@ -478,6 +587,10 @@
           <AssociationSet Name="FKirx80iw4YX19Eui684F7BsFSAp8" Association="Self.FKirx80iw4YX19Eui684F7BsFSAp8">
             <End Role="Account" EntitySet="Account" />
             <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" Association="Self.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
           </AssociationSet>
           <AssociationSet Name="FKMpbRxbvqMdsx1Iial2kKB1MywA" Association="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA">
             <End Role="Account" EntitySet="Account" />
@@ -559,6 +672,8 @@
           <NavigationProperty Name="Contact3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Account" ToRole="Contact" />
           <Property Name="UsrB7Count" Type="Int32" Nullable="false" />
           <Property Name="UsrScaniaCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountCommunication" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="Account" ToRole="AccountCommunication" />
+          <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4" FromRole="Account" ToRole="ContactCareer" />
         </EntityType>
         <EntityType Name="Activity">
           <Key>
@@ -721,6 +836,7 @@
           <NavigationProperty Name="Job" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Contact" ToRole="Job" />
           <NavigationProperty Name="ContactCommunication" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="Contact" ToRole="ContactCommunication" />
           <NavigationProperty Name="Account3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Contact" ToRole="Account" />
+          <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc" FromRole="Contact" ToRole="ContactCareer" />
         </EntityType>
         <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -925,6 +1041,24 @@
             <End Role="Contact" EntitySet="Contact" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
+          <EntitySet Name="AccountCommunication" EntityType="AtBPMModel.AccountCommunication" />
+          <AssociationSet Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo" Association="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountCommunication" EntitySet="AccountCommunication" />
+          </AssociationSet>
+          <EntitySet Name="ContactCareer" EntityType="AtBPMModel.ContactCareer" />
+          <AssociationSet Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4" Association="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FK1GGqruqwumV4yn5W3rKML7MOVYc" Association="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" Association="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="ContactCareer" EntitySet="ContactCareer" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
           <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -951,6 +1085,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contact" Relationship="AtBPMModel.FKga6GOMY3yTsBM5UObVXJs98Qv0" FromRole="Job" ToRole="Contact" />
+          <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" FromRole="Job" ToRole="ContactCareer" />
         </EntityType>
         <Association Name="FKga6GOMY3yTsBM5UObVXJs98Qv0">
           <End Type="AtBPMModel.Job" Role="Job" Multiplicity="0..1" />
@@ -1036,6 +1171,105 @@
             </Principal>
             <Dependent Role="Account">
               <PropertyRef Name="UsrAuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountCommunication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Guid" />
+          <Property Name="CommunicationTypeId" Type="Guid" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="Guid" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <Property Name="SocialMediaId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SearchNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+          <Property Name="Primary" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="AccountCommunication" ToRole="Account" />
+        </EntityType>
+        <Association Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+          <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AtBPMModel.AccountCommunication" Role="AccountCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountCommunication">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContactCareer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Guid" />
+          <Property Name="ContactId" Type="Guid" />
+          <Property Name="AccountId" Type="Guid" />
+          <Property Name="DepartmentId" Type="Guid" />
+          <Property Name="JobId" Type="Guid" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Primary" Type="Boolean" Nullable="false" />
+          <Property Name="Current" Type="Boolean" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="JobChangeReasonId" Type="Guid" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+          <Property Name="DecisionRoleId" Type="Guid" />
+          <NavigationProperty Name="Account" Relationship="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4" FromRole="ContactCareer" ToRole="Account" />
+          <NavigationProperty Name="Contact" Relationship="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc" FromRole="ContactCareer" ToRole="Contact" />
+          <NavigationProperty Name="Job" Relationship="AtBPMModel.FKjuxsZHnaXnJBdqDIzaw0dyeCAGg" FromRole="ContactCareer" ToRole="Job" />
+        </EntityType>
+        <Association Name="FKBqc0XQ1nZzXU760jUuLzzkLlt4">
+          <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1GGqruqwumV4yn5W3rKML7MOVYc">
+          <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKjuxsZHnaXnJBdqDIzaw0dyeCAGg">
+          <End Type="AtBPMModel.Job" Role="Job" Multiplicity="0..1" />
+          <End Type="AtBPMModel.ContactCareer" Role="ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactCareer">
+              <PropertyRef Name="JobId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1276,6 +1510,49 @@
                 <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCommunication">
+            <EntityTypeMapping TypeName="AtBPMModel.AccountCommunication">
+              <MappingFragment StoreEntitySet="AccountCommunication">
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+                <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+                <ScalarProperty Name="SocialMediaId" ColumnName="SocialMediaId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="CommunicationTypeId" ColumnName="CommunicationTypeId" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactCareer">
+            <EntityTypeMapping TypeName="AtBPMModel.ContactCareer">
+              <MappingFragment StoreEntitySet="ContactCareer">
+                <ScalarProperty Name="DecisionRoleId" ColumnName="DecisionRoleId" />
+                <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobChangeReasonId" ColumnName="JobChangeReasonId" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Current" ColumnName="Current" />
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
                 <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />

@@ -12,27 +12,22 @@ namespace crmtransfer
     using System;
     using System.Collections.Generic;
     
-    public partial class Job
+    public partial class AccountCommunication
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job()
-        {
-            this.Contact = new HashSet<Contact>();
-            this.ContactCareer = new HashSet<ContactCareer>();
-        }
-    
         public System.Guid Id { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedById { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<System.Guid> ModifiedById { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Nullable<System.Guid> CommunicationTypeId { get; set; }
+        public string Number { get; set; }
+        public Nullable<System.Guid> AccountId { get; set; }
+        public int Position { get; set; }
+        public string SocialMediaId { get; set; }
+        public string SearchNumber { get; set; }
         public int ProcessListeners { get; set; }
+        public bool Primary { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contact> Contact { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContactCareer> ContactCareer { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

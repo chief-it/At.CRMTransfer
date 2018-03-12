@@ -240,5 +240,48 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AccountCommunication">
+      <EntityTypeMapping TypeName="AtBPMModel.AccountCommunication">
+        <MappingFragment StoreEntitySet="AccountCommunication">
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+          <ScalarProperty Name="SocialMediaId" ColumnName="SocialMediaId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="CommunicationTypeId" ColumnName="CommunicationTypeId" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactCareer">
+      <EntityTypeMapping TypeName="AtBPMModel.ContactCareer">
+        <MappingFragment StoreEntitySet="ContactCareer">
+          <ScalarProperty Name="DecisionRoleId" ColumnName="DecisionRoleId" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobChangeReasonId" ColumnName="JobChangeReasonId" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Current" ColumnName="Current" />
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

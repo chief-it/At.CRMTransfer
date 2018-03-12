@@ -12,27 +12,26 @@ namespace crmtransfer
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_Job
+    public partial class tbl_ContactCareer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_Job()
-        {
-            this.tbl_Contact = new HashSet<tbl_Contact>();
-            this.tbl_ContactCareer = new HashSet<tbl_ContactCareer>();
-        }
-    
         public System.Guid ID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedByID { get; set; }
-        public Nullable<System.Guid> ModifiedByID { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public string Name { get; set; }
+        public Nullable<System.Guid> ModifiedByID { get; set; }
+        public Nullable<System.Guid> ContactID { get; set; }
+        public Nullable<System.Guid> AccountID { get; set; }
+        public Nullable<System.Guid> JobID { get; set; }
+        public string JobTitle { get; set; }
+        public Nullable<System.Guid> DepartmentID { get; set; }
+        public Nullable<System.Guid> MotiveID { get; set; }
         public string Description { get; set; }
-        public string NameOf { get; set; }
+        public Nullable<System.DateTime> ChangeDate { get; set; }
+        public Nullable<int> IsPrimary { get; set; }
+        public Nullable<int> IsCurrent { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_Contact> tbl_Contact { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_ContactCareer> tbl_ContactCareer { get; set; }
+        public virtual tbl_Account tbl_Account { get; set; }
+        public virtual tbl_Contact tbl_Contact { get; set; }
+        public virtual tbl_Job tbl_Job { get; set; }
     }
 }

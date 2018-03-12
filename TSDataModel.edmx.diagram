@@ -22,6 +22,12 @@
         <AssociationConnector Association="AtTSModel.FK2386AuthorIDtbl_Account" />
         <EntityTypeShape EntityType="AtTSModel.tbl_Field" Width="1.5" PointX="2.5" PointY="1" />
         <AssociationConnector Association="AtTSModel.FAccountFieldID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_AccountCommunication" Width="1.5" PointX="2.375" PointY="10.5" />
+        <AssociationConnector Association="AtTSModel.FAccountCommAccountID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_ContactCareer" Width="1.5" PointX="11.5" PointY="4" />
+        <AssociationConnector Association="AtTSModel.FContactCareerAccountID" />
+        <AssociationConnector Association="AtTSModel.FContactCareerContactID" />
+        <AssociationConnector Association="AtTSModel.FContactCareerJobID" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

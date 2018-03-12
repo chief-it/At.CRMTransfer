@@ -31,5 +31,7 @@ namespace crmtransfer
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<ContactCommunication> ContactCommunication { get; set; }
         public virtual DbSet<AccountIndustry> AccountIndustry { get; set; }
+        public virtual DbSet<AccountCommunication> AccountCommunication { get; set; }
+        public virtual DbSet<ContactCareer> ContactCareer { get; set; }
     }
 }

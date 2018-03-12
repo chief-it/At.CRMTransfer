@@ -62,6 +62,21 @@
           <Property Name="Owner4ID" Type="uniqueidentifier" />
           <Property Name="Comment" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="tbl_AccountCommunication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CommunicationTypeID" Type="uniqueidentifier" />
+          <Property Name="Position" Type="int" />
+          <Property Name="Digits" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="tbl_Contact">
           <Key>
             <PropertyRef Name="ID" />
@@ -107,6 +122,26 @@
           <Property Name="DocumentBasis" Type="nvarchar" MaxLength="250" />
           <Property Name="Comment" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="tbl_ContactCareer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="ContactID" Type="uniqueidentifier" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="JobID" Type="uniqueidentifier" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="250" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" />
+          <Property Name="MotiveID" Type="uniqueidentifier" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="IsPrimary" Type="int" />
+          <Property Name="IsCurrent" Type="int" />
+        </EntityType>
         <EntityType Name="tbl_ContactCommunication">
           <Key>
             <PropertyRef Name="ID" />
@@ -147,6 +182,18 @@
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <Association Name="FAccountCommAccountID">
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+          <End Role="tbl_AccountCommunication" Type="Self.tbl_AccountCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountCommunication">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FAccountFieldID">
           <End Role="tbl_Field" Type="Self.tbl_Field" Multiplicity="0..1" />
           <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
@@ -192,6 +239,42 @@
             </Principal>
             <Dependent Role="tbl_Contact">
               <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCareerAccountID">
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+          <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCareerContactID">
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+          <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCareerJobID">
+          <End Role="tbl_Job" Type="Self.tbl_Job" Multiplicity="0..1" />
+          <End Role="tbl_ContactCareer" Type="Self.tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Job">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="JobID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,10 +376,16 @@
         </Association>
         <EntityContainer Name="Хранилище AtTSModelContainer">
           <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AccountCommunication" EntityType="Self.tbl_AccountCommunication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ContactCareer" EntityType="Self.tbl_ContactCareer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FAccountCommAccountID" Association="Self.FAccountCommAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_AccountCommunication" EntitySet="tbl_AccountCommunication" />
+          </AssociationSet>
           <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
             <End Role="tbl_Field" EntitySet="tbl_Field" />
             <End Role="tbl_Account" EntitySet="tbl_Account" />
@@ -312,6 +401,18 @@
           <AssociationSet Name="FContactAccountID" Association="Self.FContactAccountID">
             <End Role="tbl_Account" EntitySet="tbl_Account" />
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCareerAccountID" Association="Self.FContactCareerAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCareerContactID" Association="Self.FContactCareerContactID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCareerJobID" Association="Self.FContactCareerJobID">
+            <End Role="tbl_Job" EntitySet="tbl_Job" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
           </AssociationSet>
           <AssociationSet Name="FContactCommContactID" Association="Self.FContactCommContactID">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
@@ -407,6 +508,7 @@
           <NavigationProperty Name="tbl_Account4" Relationship="AtTSModel.FK123818Owner3IDtbl_Account" FromRole="tbl_Contact" ToRole="tbl_Account" />
           <NavigationProperty Name="tbl_Account5" Relationship="AtTSModel.FK123818Owner4IDtbl_Account" FromRole="tbl_Contact" ToRole="tbl_Account" />
           <NavigationProperty Name="tbl_Account6" Relationship="AtTSModel.FK2386AuthorIDtbl_Account" FromRole="tbl_Contact" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_ContactCareer" Relationship="AtTSModel.FContactCareerContactID" FromRole="tbl_Contact" ToRole="tbl_ContactCareer" />
           </EntityType>
         <EntityType Name="tbl_Job">
           <Key>
@@ -421,6 +523,7 @@
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="NameOf" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Contact" Relationship="Self.FContactJobID" FromRole="tbl_Job" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_ContactCareer" Relationship="AtTSModel.FContactCareerJobID" FromRole="tbl_Job" ToRole="tbl_ContactCareer" />
         </EntityType>
         <Association Name="FContactJobID">
           <End Role="tbl_Job" Type="Self.tbl_Job" Multiplicity="0..1" />
@@ -511,6 +614,24 @@
           <AssociationSet Name="FAccountFieldID" Association="AtTSModel.FAccountFieldID">
             <End Role="tbl_Field" EntitySet="tbl_Field" />
             <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <EntitySet Name="tbl_AccountCommunication" EntityType="AtTSModel.tbl_AccountCommunication" />
+          <AssociationSet Name="FAccountCommAccountID" Association="AtTSModel.FAccountCommAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_AccountCommunication" EntitySet="tbl_AccountCommunication" />
+          </AssociationSet>
+          <EntitySet Name="tbl_ContactCareer" EntityType="AtTSModel.tbl_ContactCareer" />
+          <AssociationSet Name="FContactCareerAccountID" Association="AtTSModel.FContactCareerAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCareerContactID" Association="AtTSModel.FContactCareerContactID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCareerJobID" Association="AtTSModel.FContactCareerJobID">
+            <End Role="tbl_Job" EntitySet="tbl_Job" />
+            <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbl_ContactCommunication">
@@ -605,6 +726,8 @@
           <NavigationProperty Name="tbl_Contact5" Relationship="AtTSModel.FK123818Owner4IDtbl_Account" FromRole="tbl_Account" ToRole="tbl_Contact" />
           <NavigationProperty Name="tbl_Contact6" Relationship="AtTSModel.FK2386AuthorIDtbl_Account" FromRole="tbl_Account" ToRole="tbl_Contact" />
           <NavigationProperty Name="tbl_Field" Relationship="AtTSModel.FAccountFieldID" FromRole="tbl_Account" ToRole="tbl_Field" />
+          <NavigationProperty Name="tbl_AccountCommunication" Relationship="AtTSModel.FAccountCommAccountID" FromRole="tbl_Account" ToRole="tbl_AccountCommunication" />
+          <NavigationProperty Name="tbl_ContactCareer" Relationship="AtTSModel.FContactCareerAccountID" FromRole="tbl_Account" ToRole="tbl_ContactCareer" />
         </EntityType>
         <Association Name="FAccountOwnerID">
           <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="0..1" />
@@ -712,6 +835,93 @@
             </Principal>
             <Dependent Role="tbl_Account">
               <PropertyRef Name="FieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_AccountCommunication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CommunicationTypeID" Type="Guid" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="Digits" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FAccountCommAccountID" FromRole="tbl_AccountCommunication" ToRole="tbl_Account" />
+        </EntityType>
+        <Association Name="FAccountCommAccountID">
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_AccountCommunication" Role="tbl_AccountCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountCommunication">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_ContactCareer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="ContactID" Type="Guid" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="JobID" Type="Guid" />
+          <Property Name="JobTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Guid" />
+          <Property Name="MotiveID" Type="Guid" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="IsPrimary" Type="Int32" />
+          <Property Name="IsCurrent" Type="Int32" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FContactCareerAccountID" FromRole="tbl_ContactCareer" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_Contact" Relationship="AtTSModel.FContactCareerContactID" FromRole="tbl_ContactCareer" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_Job" Relationship="AtTSModel.FContactCareerJobID" FromRole="tbl_ContactCareer" ToRole="tbl_Job" />
+        </EntityType>
+        <Association Name="FContactCareerAccountID">
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_ContactCareer" Role="tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCareerContactID">
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_ContactCareer" Role="tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCareerJobID">
+          <End Type="AtTSModel.tbl_Job" Role="tbl_Job" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_ContactCareer" Role="tbl_ContactCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Job">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ContactCareer">
+              <PropertyRef Name="JobID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -860,6 +1070,43 @@
               <MappingFragment StoreEntitySet="tbl_Field">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AccountCommunication">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_AccountCommunication">
+              <MappingFragment StoreEntitySet="tbl_AccountCommunication">
+                <ScalarProperty Name="Digits" ColumnName="Digits" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="CommunicationTypeID" ColumnName="CommunicationTypeID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ContactCareer">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_ContactCareer">
+              <MappingFragment StoreEntitySet="tbl_ContactCareer">
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MotiveID" ColumnName="MotiveID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />

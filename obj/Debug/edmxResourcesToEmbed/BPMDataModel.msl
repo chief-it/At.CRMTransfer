@@ -240,5 +240,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AccountCommunication">
+      <EntityTypeMapping TypeName="AtBPMModel.AccountCommunication">
+        <MappingFragment StoreEntitySet="AccountCommunication">
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+          <ScalarProperty Name="ProcessListeners" ColumnName="ProcessListeners" />
+          <ScalarProperty Name="SearchNumber" ColumnName="SearchNumber" />
+          <ScalarProperty Name="SocialMediaId" ColumnName="SocialMediaId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="CommunicationTypeId" ColumnName="CommunicationTypeId" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

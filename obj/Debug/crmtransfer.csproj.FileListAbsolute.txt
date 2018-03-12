@@ -23,3 +23,4 @@ C:\#Dev\At\Перенос\At.CRMTransfer\bin\Debug\log4net.xml
 C:\#Dev\At\Перенос\At.CRMTransfer\obj\Debug\crmtransfer.csproj.CoreCompileInputs.cache
 C:\#Dev\At\Перенос\At.CRMTransfer\obj\Debug\crmtransfer.exe
 C:\#Dev\At\Перенос\At.CRMTransfer\obj\Debug\crmtransfer.pdb
+C:\#Dev\At\Перенос\At.CRMTransfer\obj\Debug\crmtransfer.csprojResolveAssemblyReference.cache

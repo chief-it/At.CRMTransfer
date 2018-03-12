@@ -51,6 +51,7 @@
     <NavigationProperty Name="Contact3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Account" ToRole="Contact" />
     <Property Name="UsrB7Count" Type="Int32" Nullable="false" />
     <Property Name="UsrScaniaCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AccountCommunication" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="Account" ToRole="AccountCommunication" />
   </EntityType>
   <EntityType Name="Activity">
     <Key>
@@ -417,6 +418,11 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Account" EntitySet="Account" />
     </AssociationSet>
+    <EntitySet Name="AccountCommunication" EntityType="AtBPMModel.AccountCommunication" />
+    <AssociationSet Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo" Association="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountCommunication" EntitySet="AccountCommunication" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
     <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -528,6 +534,39 @@
       </Principal>
       <Dependent Role="Account">
         <PropertyRef Name="UsrAuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountCommunication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="CommunicationTypeId" Type="Guid" />
+    <Property Name="Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="Position" Type="Int32" Nullable="false" />
+    <Property Name="SocialMediaId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SearchNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="Primary" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="AccountCommunication" ToRole="Account" />
+  </EntityType>
+  <Association Name="FKGEaeTe9hPz0Dz6R40EjG7AFdo">
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.AccountCommunication" Role="AccountCommunication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountCommunication">
+        <PropertyRef Name="AccountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

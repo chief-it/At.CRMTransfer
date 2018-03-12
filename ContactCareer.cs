@@ -12,27 +12,29 @@ namespace crmtransfer
     using System;
     using System.Collections.Generic;
     
-    public partial class Job
+    public partial class ContactCareer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job()
-        {
-            this.Contact = new HashSet<Contact>();
-            this.ContactCareer = new HashSet<ContactCareer>();
-        }
-    
         public System.Guid Id { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedById { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<System.Guid> ModifiedById { get; set; }
-        public string Name { get; set; }
+        public Nullable<System.Guid> ContactId { get; set; }
+        public Nullable<System.Guid> AccountId { get; set; }
+        public Nullable<System.Guid> DepartmentId { get; set; }
+        public Nullable<System.Guid> JobId { get; set; }
+        public string JobTitle { get; set; }
+        public bool Primary { get; set; }
+        public bool Current { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public Nullable<System.Guid> JobChangeReasonId { get; set; }
         public string Description { get; set; }
         public int ProcessListeners { get; set; }
+        public Nullable<System.Guid> DecisionRoleId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contact> Contact { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContactCareer> ContactCareer { get; set; }
+        public virtual Account Account { get; set; }
+        public virtual Contact Contact { get; set; }
+        public virtual Job Job { get; set; }
     }
 }
