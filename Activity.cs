@@ -100,5 +100,6 @@ namespace crmtransfer
         public virtual Activity Activity2 { get; set; }
         public virtual Contact Contact2 { get; set; }
         public virtual Contact Contact3 { get; set; }
+        public virtual ActivityResult ActivityResult { get; set; }
     }
 }

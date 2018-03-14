@@ -32,5 +32,11 @@ namespace crmtransfer
         public virtual DbSet<tbl_Field> tbl_Field { get; set; }
         public virtual DbSet<tbl_AccountCommunication> tbl_AccountCommunication { get; set; }
         public virtual DbSet<tbl_ContactCareer> tbl_ContactCareer { get; set; }
+        public virtual DbSet<tbl_City> tbl_City { get; set; }
+        public virtual DbSet<tbl_Country> tbl_Country { get; set; }
+        public virtual DbSet<tbl_State> tbl_State { get; set; }
+        public virtual DbSet<tbl_AccountAddress> tbl_AccountAddress { get; set; }
+        public virtual DbSet<tbl_Task> tbl_Task { get; set; }
+        public virtual DbSet<tbl_TaskResult> tbl_TaskResult { get; set; }
     }
 }

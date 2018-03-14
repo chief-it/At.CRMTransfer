@@ -62,6 +62,25 @@
           <Property Name="Owner4ID" Type="uniqueidentifier" />
           <Property Name="Comment" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="tbl_AccountAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="AddressTypeID" Type="uniqueidentifier" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="CityID" Type="uniqueidentifier" />
+          <Property Name="StateID" Type="uniqueidentifier" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="250" />
+          <Property Name="CountryID" Type="uniqueidentifier" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="IsPrimary" Type="int" />
+          <Property Name="TerritoryID" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="tbl_AccountCommunication">
           <Key>
             <PropertyRef Name="ID" />
@@ -76,6 +95,21 @@
           <Property Name="CommunicationTypeID" Type="uniqueidentifier" />
           <Property Name="Position" Type="int" />
           <Property Name="Digits" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="CountryID" Type="uniqueidentifier" />
+          <Property Name="StateID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="TimeZone" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="tbl_Contact">
           <Key>
@@ -157,6 +191,19 @@
           <Property Name="Position" Type="int" />
           <Property Name="Digits" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="tbl_Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="TerritoryID" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="tbl_Field">
           <Key>
             <PropertyRef Name="ID" />
@@ -182,6 +229,126 @@
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="tbl_State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="CountryID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="DueDate" Type="datetime" />
+          <Property Name="PriorityID" Type="uniqueidentifier" />
+          <Property Name="OwnerID" Type="uniqueidentifier" />
+          <Property Name="ContactID" Type="uniqueidentifier" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="OpportunityID" Type="uniqueidentifier" />
+          <Property Name="InvoiceID" Type="uniqueidentifier" />
+          <Property Name="StatusID" Type="uniqueidentifier" />
+          <Property Name="TypeID" Type="uniqueidentifier" />
+          <Property Name="PercentDue" Type="int" />
+          <Property Name="ResultID" Type="uniqueidentifier" />
+          <Property Name="DetailedResult" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShowInScheduler" Type="int" />
+          <Property Name="Description" Type="image" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="ActualFinishDate" Type="datetime" />
+          <Property Name="ActualDurationHours" Type="int" />
+          <Property Name="ActualDurationMinutes" Type="int" />
+          <Property Name="RemindingToAuthorID" Type="uniqueidentifier" />
+          <Property Name="RemindingToOwnerID" Type="uniqueidentifier" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="ActualStartDate" Type="datetime" />
+          <Property Name="ActualDuration" Type="int" />
+          <Property Name="CycleTaskParamID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tbl_TaskResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByID" Type="uniqueidentifier" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByID" Type="uniqueidentifier" />
+          <Property Name="Result" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FAccountAddressAccountID">
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+          <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressCityID">
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+          <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressCountryID">
+          <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+          <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressStateID">
+          <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+          <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountCityID">
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FAccountCommAccountID">
           <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
           <End Role="tbl_AccountCommunication" Type="Self.tbl_AccountCommunication" Multiplicity="*" />
@@ -191,6 +358,18 @@
             </Principal>
             <Dependent Role="tbl_AccountCommunication">
               <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountCountryID">
+          <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="CountryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -227,6 +406,42 @@
             </Principal>
             <Dependent Role="tbl_Account">
               <PropertyRef Name="PrimaryContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountStateID">
+          <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FCityCountryID">
+          <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FCityStateID">
+          <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_City">
+              <PropertyRef Name="StateID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,6 +493,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FContactCityID">
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FContactCommContactID">
           <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
           <End Role="tbl_ContactCommunication" Type="Self.tbl_ContactCommunication" Multiplicity="*" />
@@ -287,6 +514,18 @@
             </Principal>
             <Dependent Role="tbl_ContactCommunication">
               <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCountryID">
+          <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="CountryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -311,6 +550,18 @@
             </Principal>
             <Dependent Role="tbl_Contact1">
               <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactStateID">
+          <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="StateID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -374,17 +625,107 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FStateCountryID">
+          <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+          <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskAccountID">
+          <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+          <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskContactID">
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+          <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskOwnerID">
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+          <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskResultID">
+          <End Role="tbl_TaskResult" Type="Self.tbl_TaskResult" Multiplicity="0..1" />
+          <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TaskResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="ResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище AtTSModelContainer">
           <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AccountAddress" EntityType="Self.tbl_AccountAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_AccountCommunication" EntityType="Self.tbl_AccountCommunication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_City" EntityType="Self.tbl_City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ContactCareer" EntityType="Self.tbl_ContactCareer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Country" EntityType="Self.tbl_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_State" EntityType="Self.tbl_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Task" EntityType="Self.tbl_Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TaskResult" EntityType="Self.tbl_TaskResult" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FAccountAddressAccountID" Association="Self.FAccountAddressAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressCityID" Association="Self.FAccountAddressCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressCountryID" Association="Self.FAccountAddressCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressStateID" Association="Self.FAccountAddressStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountCityID" Association="Self.FAccountCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
           <AssociationSet Name="FAccountCommAccountID" Association="Self.FAccountCommAccountID">
             <End Role="tbl_Account" EntitySet="tbl_Account" />
             <End Role="tbl_AccountCommunication" EntitySet="tbl_AccountCommunication" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountCountryID" Association="Self.FAccountCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
           </AssociationSet>
           <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
             <End Role="tbl_Field" EntitySet="tbl_Field" />
@@ -397,6 +738,18 @@
           <AssociationSet Name="FAccountPrimaryContactID" Association="Self.FAccountPrimaryContactID">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
             <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountStateID" Association="Self.FAccountStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FCityCountryID" Association="Self.FCityCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_City" EntitySet="tbl_City" />
+          </AssociationSet>
+          <AssociationSet Name="FCityStateID" Association="Self.FCityStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_City" EntitySet="tbl_City" />
           </AssociationSet>
           <AssociationSet Name="FContactAccountID" Association="Self.FContactAccountID">
             <End Role="tbl_Account" EntitySet="tbl_Account" />
@@ -414,9 +767,17 @@
             <End Role="tbl_Job" EntitySet="tbl_Job" />
             <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
           </AssociationSet>
+          <AssociationSet Name="FContactCityID" Association="Self.FContactCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
           <AssociationSet Name="FContactCommContactID" Association="Self.FContactCommContactID">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
             <End Role="tbl_ContactCommunication" EntitySet="tbl_ContactCommunication" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCountryID" Association="Self.FContactCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
           </AssociationSet>
           <AssociationSet Name="FContactJobID" Association="Self.FContactJobID">
             <End Role="tbl_Job" EntitySet="tbl_Job" />
@@ -425,6 +786,10 @@
           <AssociationSet Name="FContactOwnerID" Association="Self.FContactOwnerID">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
             <End Role="tbl_Contact1" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FContactStateID" Association="Self.FContactStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
           </AssociationSet>
           <AssociationSet Name="FK123818Owner2IDtbl_Account" Association="Self.FK123818Owner2IDtbl_Account">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
@@ -445,6 +810,26 @@
           <AssociationSet Name="FK2386AuthorIDtbl_Account" Association="Self.FK2386AuthorIDtbl_Account">
             <End Role="tbl_Contact" EntitySet="tbl_Contact" />
             <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FStateCountryID" Association="Self.FStateCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_State" EntitySet="tbl_State" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskAccountID" Association="Self.FTaskAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskContactID" Association="Self.FTaskContactID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskOwnerID" Association="Self.FTaskOwnerID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskResultID" Association="Self.FTaskResultID">
+            <End Role="tbl_TaskResult" EntitySet="tbl_TaskResult" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -509,6 +894,11 @@
           <NavigationProperty Name="tbl_Account5" Relationship="AtTSModel.FK123818Owner4IDtbl_Account" FromRole="tbl_Contact" ToRole="tbl_Account" />
           <NavigationProperty Name="tbl_Account6" Relationship="AtTSModel.FK2386AuthorIDtbl_Account" FromRole="tbl_Contact" ToRole="tbl_Account" />
           <NavigationProperty Name="tbl_ContactCareer" Relationship="AtTSModel.FContactCareerContactID" FromRole="tbl_Contact" ToRole="tbl_ContactCareer" />
+          <NavigationProperty Name="tbl_City" Relationship="AtTSModel.FContactCityID" FromRole="tbl_Contact" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Country" Relationship="AtTSModel.FContactCountryID" FromRole="tbl_Contact" ToRole="tbl_Country" />
+          <NavigationProperty Name="tbl_State" Relationship="AtTSModel.FContactStateID" FromRole="tbl_Contact" ToRole="tbl_State" />
+          <NavigationProperty Name="tbl_Task" Relationship="AtTSModel.FTaskContactID" FromRole="tbl_Contact" ToRole="tbl_Task" />
+          <NavigationProperty Name="tbl_Task1" Relationship="AtTSModel.FTaskOwnerID" FromRole="tbl_Contact" ToRole="tbl_Task" />
           </EntityType>
         <EntityType Name="tbl_Job">
           <Key>
@@ -633,6 +1023,80 @@
             <End Role="tbl_Job" EntitySet="tbl_Job" />
             <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
           </AssociationSet>
+          <EntitySet Name="tbl_City" EntityType="AtTSModel.tbl_City" />
+          <EntitySet Name="tbl_Country" EntityType="AtTSModel.tbl_Country" />
+          <EntitySet Name="tbl_State" EntityType="AtTSModel.tbl_State" />
+          <AssociationSet Name="FAccountCityID" Association="AtTSModel.FAccountCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountCountryID" Association="AtTSModel.FAccountCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountStateID" Association="AtTSModel.FAccountStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FCityCountryID" Association="AtTSModel.FCityCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_City" EntitySet="tbl_City" />
+          </AssociationSet>
+          <AssociationSet Name="FCityStateID" Association="AtTSModel.FCityStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_City" EntitySet="tbl_City" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCityID" Association="AtTSModel.FContactCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FContactCountryID" Association="AtTSModel.FContactCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FContactStateID" Association="AtTSModel.FContactStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FStateCountryID" Association="AtTSModel.FStateCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_State" EntitySet="tbl_State" />
+          </AssociationSet>
+          <EntitySet Name="tbl_AccountAddress" EntityType="AtTSModel.tbl_AccountAddress" />
+          <AssociationSet Name="FAccountAddressAccountID" Association="AtTSModel.FAccountAddressAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressCityID" Association="AtTSModel.FAccountAddressCityID">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressCountryID" Association="AtTSModel.FAccountAddressCountryID">
+            <End Role="tbl_Country" EntitySet="tbl_Country" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FAccountAddressStateID" Association="AtTSModel.FAccountAddressStateID">
+            <End Role="tbl_State" EntitySet="tbl_State" />
+            <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Task" EntityType="AtTSModel.tbl_Task" />
+          <AssociationSet Name="FTaskAccountID" Association="AtTSModel.FTaskAccountID">
+            <End Role="tbl_Account" EntitySet="tbl_Account" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskContactID" Association="AtTSModel.FTaskContactID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FTaskOwnerID" Association="AtTSModel.FTaskOwnerID">
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
+          <EntitySet Name="tbl_TaskResult" EntityType="AtTSModel.tbl_TaskResult" />
+          <AssociationSet Name="FTaskResultID" Association="AtTSModel.FTaskResultID">
+            <End Role="tbl_TaskResult" EntitySet="tbl_TaskResult" />
+            <End Role="tbl_Task" EntitySet="tbl_Task" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbl_ContactCommunication">
           <Key>
@@ -728,6 +1192,11 @@
           <NavigationProperty Name="tbl_Field" Relationship="AtTSModel.FAccountFieldID" FromRole="tbl_Account" ToRole="tbl_Field" />
           <NavigationProperty Name="tbl_AccountCommunication" Relationship="AtTSModel.FAccountCommAccountID" FromRole="tbl_Account" ToRole="tbl_AccountCommunication" />
           <NavigationProperty Name="tbl_ContactCareer" Relationship="AtTSModel.FContactCareerAccountID" FromRole="tbl_Account" ToRole="tbl_ContactCareer" />
+          <NavigationProperty Name="tbl_City" Relationship="AtTSModel.FAccountCityID" FromRole="tbl_Account" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Country" Relationship="AtTSModel.FAccountCountryID" FromRole="tbl_Account" ToRole="tbl_Country" />
+          <NavigationProperty Name="tbl_State" Relationship="AtTSModel.FAccountStateID" FromRole="tbl_Account" ToRole="tbl_State" />
+          <NavigationProperty Name="tbl_AccountAddress" Relationship="AtTSModel.FAccountAddressAccountID" FromRole="tbl_Account" ToRole="tbl_AccountAddress" />
+          <NavigationProperty Name="tbl_Task" Relationship="AtTSModel.FTaskAccountID" FromRole="tbl_Account" ToRole="tbl_Task" />
         </EntityType>
         <Association Name="FAccountOwnerID">
           <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="0..1" />
@@ -925,6 +1394,341 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbl_City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="CountryID" Type="Guid" />
+          <Property Name="StateID" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TimeZone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FAccountCityID" FromRole="tbl_City" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_Country" Relationship="AtTSModel.FCityCountryID" FromRole="tbl_City" ToRole="tbl_Country" />
+          <NavigationProperty Name="tbl_State" Relationship="AtTSModel.FCityStateID" FromRole="tbl_City" ToRole="tbl_State" />
+          <NavigationProperty Name="tbl_Contact" Relationship="AtTSModel.FContactCityID" FromRole="tbl_City" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_AccountAddress" Relationship="AtTSModel.FAccountAddressCityID" FromRole="tbl_City" ToRole="tbl_AccountAddress" />
+        </EntityType>
+        <EntityType Name="tbl_Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TerritoryID" Type="Guid" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FAccountCountryID" FromRole="tbl_Country" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_City" Relationship="AtTSModel.FCityCountryID" FromRole="tbl_Country" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Contact" Relationship="AtTSModel.FContactCountryID" FromRole="tbl_Country" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_State" Relationship="AtTSModel.FStateCountryID" FromRole="tbl_Country" ToRole="tbl_State" />
+          <NavigationProperty Name="tbl_AccountAddress" Relationship="AtTSModel.FAccountAddressCountryID" FromRole="tbl_Country" ToRole="tbl_AccountAddress" />
+        </EntityType>
+        <EntityType Name="tbl_State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="CountryID" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FAccountStateID" FromRole="tbl_State" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_City" Relationship="AtTSModel.FCityStateID" FromRole="tbl_State" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Contact" Relationship="AtTSModel.FContactStateID" FromRole="tbl_State" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_Country" Relationship="AtTSModel.FStateCountryID" FromRole="tbl_State" ToRole="tbl_Country" />
+          <NavigationProperty Name="tbl_AccountAddress" Relationship="AtTSModel.FAccountAddressStateID" FromRole="tbl_State" ToRole="tbl_AccountAddress" />
+        </EntityType>
+        <Association Name="FAccountCityID">
+          <End Type="AtTSModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountCountryID">
+          <End Type="AtTSModel.tbl_Country" Role="tbl_Country" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountStateID">
+          <End Type="AtTSModel.tbl_State" Role="tbl_State" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Account">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FCityCountryID">
+          <End Type="AtTSModel.tbl_Country" Role="tbl_Country" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_City" Role="tbl_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FCityStateID">
+          <End Type="AtTSModel.tbl_State" Role="tbl_State" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_City" Role="tbl_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCityID">
+          <End Type="AtTSModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactCountryID">
+          <End Type="AtTSModel.tbl_Country" Role="tbl_Country" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FContactStateID">
+          <End Type="AtTSModel.tbl_State" Role="tbl_State" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FStateCountryID">
+          <End Type="AtTSModel.tbl_Country" Role="tbl_Country" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_State" Role="tbl_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_AccountAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="AddressTypeID" Type="Guid" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Guid" />
+          <Property Name="StateID" Type="Guid" />
+          <Property Name="ZIP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Guid" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="IsPrimary" Type="Int32" />
+          <Property Name="TerritoryID" Type="Guid" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FAccountAddressAccountID" FromRole="tbl_AccountAddress" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_City" Relationship="AtTSModel.FAccountAddressCityID" FromRole="tbl_AccountAddress" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Country" Relationship="AtTSModel.FAccountAddressCountryID" FromRole="tbl_AccountAddress" ToRole="tbl_Country" />
+          <NavigationProperty Name="tbl_State" Relationship="AtTSModel.FAccountAddressStateID" FromRole="tbl_AccountAddress" ToRole="tbl_State" />
+        </EntityType>
+        <Association Name="FAccountAddressAccountID">
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_AccountAddress" Role="tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressCityID">
+          <End Type="AtTSModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_AccountAddress" Role="tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressCountryID">
+          <End Type="AtTSModel.tbl_Country" Role="tbl_Country" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_AccountAddress" Role="tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FAccountAddressStateID">
+          <End Type="AtTSModel.tbl_State" Role="tbl_State" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_AccountAddress" Role="tbl_AccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_AccountAddress">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="PriorityID" Type="Guid" />
+          <Property Name="OwnerID" Type="Guid" />
+          <Property Name="ContactID" Type="Guid" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="OpportunityID" Type="Guid" />
+          <Property Name="InvoiceID" Type="Guid" />
+          <Property Name="StatusID" Type="Guid" />
+          <Property Name="TypeID" Type="Guid" />
+          <Property Name="PercentDue" Type="Int32" />
+          <Property Name="ResultID" Type="Guid" />
+          <Property Name="DetailedResult" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShowInScheduler" Type="Int32" />
+          <Property Name="Description" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="ActualFinishDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualDurationHours" Type="Int32" />
+          <Property Name="ActualDurationMinutes" Type="Int32" />
+          <Property Name="RemindingToAuthorID" Type="Guid" />
+          <Property Name="RemindingToOwnerID" Type="Guid" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="ActualStartDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualDuration" Type="Int32" />
+          <Property Name="CycleTaskParamID" Type="Guid" />
+          <NavigationProperty Name="tbl_Account" Relationship="AtTSModel.FTaskAccountID" FromRole="tbl_Task" ToRole="tbl_Account" />
+          <NavigationProperty Name="tbl_Contact" Relationship="AtTSModel.FTaskContactID" FromRole="tbl_Task" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_Contact1" Relationship="AtTSModel.FTaskOwnerID" FromRole="tbl_Task" ToRole="tbl_Contact" />
+          <NavigationProperty Name="tbl_TaskResult" Relationship="AtTSModel.FTaskResultID" FromRole="tbl_Task" ToRole="tbl_TaskResult" />
+        </EntityType>
+        <Association Name="FTaskAccountID">
+          <End Type="AtTSModel.tbl_Account" Role="tbl_Account" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Task" Role="tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskContactID">
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Task" Role="tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FTaskOwnerID">
+          <End Type="AtTSModel.tbl_Contact" Role="tbl_Contact" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Task" Role="tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_TaskResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Guid" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByID" Type="Guid" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Task" Relationship="AtTSModel.FTaskResultID" FromRole="tbl_TaskResult" ToRole="tbl_Task" />
+        </EntityType>
+        <Association Name="FTaskResultID">
+          <End Type="AtTSModel.tbl_TaskResult" Role="tbl_TaskResult" Multiplicity="0..1" />
+          <End Type="AtTSModel.tbl_Task" Role="tbl_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TaskResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Task">
+              <PropertyRef Name="ResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1107,6 +1911,119 @@
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_City">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_City">
+              <MappingFragment StoreEntitySet="tbl_City">
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Country">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_Country">
+              <MappingFragment StoreEntitySet="tbl_Country">
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_State">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_State">
+              <MappingFragment StoreEntitySet="tbl_State">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AccountAddress">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_AccountAddress">
+              <MappingFragment StoreEntitySet="tbl_AccountAddress">
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Task">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_Task">
+              <MappingFragment StoreEntitySet="tbl_Task">
+                <ScalarProperty Name="CycleTaskParamID" ColumnName="CycleTaskParamID" />
+                <ScalarProperty Name="ActualDuration" ColumnName="ActualDuration" />
+                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RemindingToOwnerID" ColumnName="RemindingToOwnerID" />
+                <ScalarProperty Name="RemindingToAuthorID" ColumnName="RemindingToAuthorID" />
+                <ScalarProperty Name="ActualDurationMinutes" ColumnName="ActualDurationMinutes" />
+                <ScalarProperty Name="ActualDurationHours" ColumnName="ActualDurationHours" />
+                <ScalarProperty Name="ActualFinishDate" ColumnName="ActualFinishDate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShowInScheduler" ColumnName="ShowInScheduler" />
+                <ScalarProperty Name="DetailedResult" ColumnName="DetailedResult" />
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="PercentDue" ColumnName="PercentDue" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="OpportunityID" ColumnName="OpportunityID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TaskResult">
+            <EntityTypeMapping TypeName="AtTSModel.tbl_TaskResult">
+              <MappingFragment StoreEntitySet="tbl_TaskResult">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
                 <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />

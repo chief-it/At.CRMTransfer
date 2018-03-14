@@ -33,5 +33,10 @@ namespace crmtransfer
         public virtual DbSet<AccountIndustry> AccountIndustry { get; set; }
         public virtual DbSet<AccountCommunication> AccountCommunication { get; set; }
         public virtual DbSet<ContactCareer> ContactCareer { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<AccountAddress> AccountAddress { get; set; }
+        public virtual DbSet<ActivityResult> ActivityResult { get; set; }
     }
 }

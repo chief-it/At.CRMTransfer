@@ -57,6 +57,25 @@
     <Property Name="Owner4ID" Type="uniqueidentifier" />
     <Property Name="Comment" Type="nvarchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="tbl_AccountAddress">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="AddressTypeID" Type="uniqueidentifier" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="CityID" Type="uniqueidentifier" />
+    <Property Name="StateID" Type="uniqueidentifier" />
+    <Property Name="ZIP" Type="nvarchar" MaxLength="250" />
+    <Property Name="CountryID" Type="uniqueidentifier" />
+    <Property Name="AccountID" Type="uniqueidentifier" />
+    <Property Name="IsPrimary" Type="int" />
+    <Property Name="TerritoryID" Type="uniqueidentifier" />
+  </EntityType>
   <EntityType Name="tbl_AccountCommunication">
     <Key>
       <PropertyRef Name="ID" />
@@ -71,6 +90,21 @@
     <Property Name="CommunicationTypeID" Type="uniqueidentifier" />
     <Property Name="Position" Type="int" />
     <Property Name="Digits" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="CountryID" Type="uniqueidentifier" />
+    <Property Name="StateID" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="TimeZone" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="tbl_Contact">
     <Key>
@@ -152,6 +186,19 @@
     <Property Name="Position" Type="int" />
     <Property Name="Digits" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="tbl_Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="TerritoryID" Type="uniqueidentifier" />
+  </EntityType>
   <EntityType Name="tbl_Field">
     <Key>
       <PropertyRef Name="ID" />
@@ -177,6 +224,126 @@
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="NameOf" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="tbl_State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="CountryID" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_Task">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="PriorityID" Type="uniqueidentifier" />
+    <Property Name="OwnerID" Type="uniqueidentifier" />
+    <Property Name="ContactID" Type="uniqueidentifier" />
+    <Property Name="AccountID" Type="uniqueidentifier" />
+    <Property Name="OpportunityID" Type="uniqueidentifier" />
+    <Property Name="InvoiceID" Type="uniqueidentifier" />
+    <Property Name="StatusID" Type="uniqueidentifier" />
+    <Property Name="TypeID" Type="uniqueidentifier" />
+    <Property Name="PercentDue" Type="int" />
+    <Property Name="ResultID" Type="uniqueidentifier" />
+    <Property Name="DetailedResult" Type="nvarchar" MaxLength="500" />
+    <Property Name="ShowInScheduler" Type="int" />
+    <Property Name="Description" Type="image" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="ActualFinishDate" Type="datetime" />
+    <Property Name="ActualDurationHours" Type="int" />
+    <Property Name="ActualDurationMinutes" Type="int" />
+    <Property Name="RemindingToAuthorID" Type="uniqueidentifier" />
+    <Property Name="RemindingToOwnerID" Type="uniqueidentifier" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="ActualStartDate" Type="datetime" />
+    <Property Name="ActualDuration" Type="int" />
+    <Property Name="CycleTaskParamID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tbl_TaskResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedByID" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedByID" Type="uniqueidentifier" />
+    <Property Name="Result" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FAccountAddressAccountID">
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+    <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_AccountAddress">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountAddressCityID">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_AccountAddress">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountAddressCountryID">
+    <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+    <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_AccountAddress">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountAddressStateID">
+    <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+    <End Role="tbl_AccountAddress" Type="Self.tbl_AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_AccountAddress">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountCityID">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FAccountCommAccountID">
     <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
     <End Role="tbl_AccountCommunication" Type="Self.tbl_AccountCommunication" Multiplicity="*" />
@@ -186,6 +353,18 @@
       </Principal>
       <Dependent Role="tbl_AccountCommunication">
         <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountCountryID">
+    <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="CountryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -222,6 +401,42 @@
       </Principal>
       <Dependent Role="tbl_Account">
         <PropertyRef Name="PrimaryContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FAccountStateID">
+    <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FCityCountryID">
+    <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_City">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FCityStateID">
+    <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_City">
+        <PropertyRef Name="StateID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -273,6 +488,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FContactCityID">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FContactCommContactID">
     <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
     <End Role="tbl_ContactCommunication" Type="Self.tbl_ContactCommunication" Multiplicity="*" />
@@ -282,6 +509,18 @@
       </Principal>
       <Dependent Role="tbl_ContactCommunication">
         <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactCountryID">
+    <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="CountryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -306,6 +545,18 @@
       </Principal>
       <Dependent Role="tbl_Contact1">
         <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FContactStateID">
+    <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="StateID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -369,17 +620,107 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FStateCountryID">
+    <End Role="tbl_Country" Type="Self.tbl_Country" Multiplicity="0..1" />
+    <End Role="tbl_State" Type="Self.tbl_State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_State">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FTaskAccountID">
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="0..1" />
+    <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Task">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FTaskContactID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Task">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FTaskOwnerID">
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="0..1" />
+    <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Task">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FTaskResultID">
+    <End Role="tbl_TaskResult" Type="Self.tbl_TaskResult" Multiplicity="0..1" />
+    <End Role="tbl_Task" Type="Self.tbl_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_TaskResult">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Task">
+        <PropertyRef Name="ResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище AtTSModelContainer">
     <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AccountAddress" EntityType="Self.tbl_AccountAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_AccountCommunication" EntityType="Self.tbl_AccountCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_City" EntityType="Self.tbl_City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ContactCareer" EntityType="Self.tbl_ContactCareer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ContactCommunication" EntityType="Self.tbl_ContactCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Country" EntityType="Self.tbl_Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Field" EntityType="Self.tbl_Field" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Job" EntityType="Self.tbl_Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_State" EntityType="Self.tbl_State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Task" EntityType="Self.tbl_Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_TaskResult" EntityType="Self.tbl_TaskResult" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FAccountAddressAccountID" Association="Self.FAccountAddressAccountID">
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+      <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountAddressCityID" Association="Self.FAccountAddressCityID">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountAddressCountryID" Association="Self.FAccountAddressCountryID">
+      <End Role="tbl_Country" EntitySet="tbl_Country" />
+      <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountAddressStateID" Association="Self.FAccountAddressStateID">
+      <End Role="tbl_State" EntitySet="tbl_State" />
+      <End Role="tbl_AccountAddress" EntitySet="tbl_AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountCityID" Association="Self.FAccountCityID">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
     <AssociationSet Name="FAccountCommAccountID" Association="Self.FAccountCommAccountID">
       <End Role="tbl_Account" EntitySet="tbl_Account" />
       <End Role="tbl_AccountCommunication" EntitySet="tbl_AccountCommunication" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountCountryID" Association="Self.FAccountCountryID">
+      <End Role="tbl_Country" EntitySet="tbl_Country" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
     </AssociationSet>
     <AssociationSet Name="FAccountFieldID" Association="Self.FAccountFieldID">
       <End Role="tbl_Field" EntitySet="tbl_Field" />
@@ -392,6 +733,18 @@
     <AssociationSet Name="FAccountPrimaryContactID" Association="Self.FAccountPrimaryContactID">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
       <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FAccountStateID" Association="Self.FAccountStateID">
+      <End Role="tbl_State" EntitySet="tbl_State" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FCityCountryID" Association="Self.FCityCountryID">
+      <End Role="tbl_Country" EntitySet="tbl_Country" />
+      <End Role="tbl_City" EntitySet="tbl_City" />
+    </AssociationSet>
+    <AssociationSet Name="FCityStateID" Association="Self.FCityStateID">
+      <End Role="tbl_State" EntitySet="tbl_State" />
+      <End Role="tbl_City" EntitySet="tbl_City" />
     </AssociationSet>
     <AssociationSet Name="FContactAccountID" Association="Self.FContactAccountID">
       <End Role="tbl_Account" EntitySet="tbl_Account" />
@@ -409,9 +762,17 @@
       <End Role="tbl_Job" EntitySet="tbl_Job" />
       <End Role="tbl_ContactCareer" EntitySet="tbl_ContactCareer" />
     </AssociationSet>
+    <AssociationSet Name="FContactCityID" Association="Self.FContactCityID">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+    </AssociationSet>
     <AssociationSet Name="FContactCommContactID" Association="Self.FContactCommContactID">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
       <End Role="tbl_ContactCommunication" EntitySet="tbl_ContactCommunication" />
+    </AssociationSet>
+    <AssociationSet Name="FContactCountryID" Association="Self.FContactCountryID">
+      <End Role="tbl_Country" EntitySet="tbl_Country" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
     </AssociationSet>
     <AssociationSet Name="FContactJobID" Association="Self.FContactJobID">
       <End Role="tbl_Job" EntitySet="tbl_Job" />
@@ -420,6 +781,10 @@
     <AssociationSet Name="FContactOwnerID" Association="Self.FContactOwnerID">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
       <End Role="tbl_Contact1" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FContactStateID" Association="Self.FContactStateID">
+      <End Role="tbl_State" EntitySet="tbl_State" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
     </AssociationSet>
     <AssociationSet Name="FK123818Owner2IDtbl_Account" Association="Self.FK123818Owner2IDtbl_Account">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
@@ -440,6 +805,26 @@
     <AssociationSet Name="FK2386AuthorIDtbl_Account" Association="Self.FK2386AuthorIDtbl_Account">
       <End Role="tbl_Contact" EntitySet="tbl_Contact" />
       <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FStateCountryID" Association="Self.FStateCountryID">
+      <End Role="tbl_Country" EntitySet="tbl_Country" />
+      <End Role="tbl_State" EntitySet="tbl_State" />
+    </AssociationSet>
+    <AssociationSet Name="FTaskAccountID" Association="Self.FTaskAccountID">
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+      <End Role="tbl_Task" EntitySet="tbl_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FTaskContactID" Association="Self.FTaskContactID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Task" EntitySet="tbl_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FTaskOwnerID" Association="Self.FTaskOwnerID">
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+      <End Role="tbl_Task" EntitySet="tbl_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FTaskResultID" Association="Self.FTaskResultID">
+      <End Role="tbl_TaskResult" EntitySet="tbl_TaskResult" />
+      <End Role="tbl_Task" EntitySet="tbl_Task" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

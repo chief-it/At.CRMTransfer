@@ -53,6 +53,10 @@
     <Property Name="UsrScaniaCount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="AccountCommunication" Relationship="AtBPMModel.FKGEaeTe9hPz0Dz6R40EjG7AFdo" FromRole="Account" ToRole="AccountCommunication" />
     <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FKBqc0XQ1nZzXU760jUuLzzkLlt4" FromRole="Account" ToRole="ContactCareer" />
+    <NavigationProperty Name="Country" Relationship="AtBPMModel.FKfrMV7ZZl5CjXMq3CFlb5UapXk" FromRole="Account" ToRole="Country" />
+    <NavigationProperty Name="City" Relationship="AtBPMModel.FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88" FromRole="Account" ToRole="City" />
+    <NavigationProperty Name="Region" Relationship="AtBPMModel.FKq5mLBFSyRkazJDjNmdIyNihPoU" FromRole="Account" ToRole="Region" />
+    <NavigationProperty Name="AccountAddress" Relationship="AtBPMModel.FKoV1xJniHz1x37BHkvuLhlITJ1k" FromRole="Account" ToRole="AccountAddress" />
   </EntityType>
   <EntityType Name="Activity">
     <Key>
@@ -136,6 +140,7 @@
     <NavigationProperty Name="Activity2" Relationship="Self.FKPkYRMonMU4O22bg1UtAWBnc3Y8" FromRole="Activity1" ToRole="Activity" />
     <NavigationProperty Name="Contact2" Relationship="Self.FKpTKvSEK1iTkF85m8so43cNMPM4" FromRole="Activity" ToRole="Contact" />
     <NavigationProperty Name="Contact3" Relationship="Self.FKxLbw957waHhgItDgCsX3oYCAFMs" FromRole="Activity" ToRole="Contact" />
+    <NavigationProperty Name="ActivityResult" Relationship="AtBPMModel.FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg" FromRole="Activity" ToRole="ActivityResult" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -216,6 +221,9 @@
     <NavigationProperty Name="ContactCommunication" Relationship="AtBPMModel.FK8TncqtOS6Zrgaph0QkfBsU2km8" FromRole="Contact" ToRole="ContactCommunication" />
     <NavigationProperty Name="Account3" Relationship="AtBPMModel.FKeiYieL27Ia7raCMTyqDHiiC6Po" FromRole="Contact" ToRole="Account" />
     <NavigationProperty Name="ContactCareer" Relationship="AtBPMModel.FK1GGqruqwumV4yn5W3rKML7MOVYc" FromRole="Contact" ToRole="ContactCareer" />
+    <NavigationProperty Name="City" Relationship="AtBPMModel.FK6zZPDcOcVS5abLLCBWJL4RLioyY" FromRole="Contact" ToRole="City" />
+    <NavigationProperty Name="Region" Relationship="AtBPMModel.FK8FSE2BZ4nzS816YAsyjV0hhSz0" FromRole="Contact" ToRole="Region" />
+    <NavigationProperty Name="Country" Relationship="AtBPMModel.FKIMoLJOQpPpyopu36M0RuWlsJng" FromRole="Contact" ToRole="Country" />
   </EntityType>
   <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -438,6 +446,67 @@
       <End Role="Job" EntitySet="Job" />
       <End Role="ContactCareer" EntitySet="ContactCareer" />
     </AssociationSet>
+    <EntitySet Name="City" EntityType="AtBPMModel.City" />
+    <EntitySet Name="Country" EntityType="AtBPMModel.Country" />
+    <EntitySet Name="Region" EntityType="AtBPMModel.Region" />
+    <AssociationSet Name="FKfrMV7ZZl5CjXMq3CFlb5UapXk" Association="AtBPMModel.FKfrMV7ZZl5CjXMq3CFlb5UapXk">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88" Association="AtBPMModel.FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88">
+      <End Role="City" EntitySet="City" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKq5mLBFSyRkazJDjNmdIyNihPoU" Association="AtBPMModel.FKq5mLBFSyRkazJDjNmdIyNihPoU">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK4vnjzZqZrvyH7pGPTDXQBJ8FUY" Association="AtBPMModel.FK4vnjzZqZrvyH7pGPTDXQBJ8FUY">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK5zpRcXQXB0e9qlGTOCMPKC7WJdY" Association="AtBPMModel.FK5zpRcXQXB0e9qlGTOCMPKC7WJdY">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK6zZPDcOcVS5abLLCBWJL4RLioyY" Association="AtBPMModel.FK6zZPDcOcVS5abLLCBWJL4RLioyY">
+      <End Role="City" EntitySet="City" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK8FSE2BZ4nzS816YAsyjV0hhSz0" Association="AtBPMModel.FK8FSE2BZ4nzS816YAsyjV0hhSz0">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMoLJOQpPpyopu36M0RuWlsJng" Association="AtBPMModel.FKIMoLJOQpPpyopu36M0RuWlsJng">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKrDJRK4SI0Ecn6qIR4RigBtnAOI" Association="AtBPMModel.FKrDJRK4SI0Ecn6qIR4RigBtnAOI">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Region" EntitySet="Region" />
+    </AssociationSet>
+    <EntitySet Name="AccountAddress" EntityType="AtBPMModel.AccountAddress" />
+    <AssociationSet Name="FKoV1xJniHz1x37BHkvuLhlITJ1k" Association="AtBPMModel.FKoV1xJniHz1x37BHkvuLhlITJ1k">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FKfLAB7aH2Cp6I94P7W1NUcE9tSA" Association="AtBPMModel.FKfLAB7aH2Cp6I94P7W1NUcE9tSA">
+      <End Role="City" EntitySet="City" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FKtRCLy3Yg8m6Me20hPqEqm1H3VA" Association="AtBPMModel.FKtRCLy3Yg8m6Me20hPqEqm1H3VA">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FKxmencdGAcc24mji6igXXHvLAUP4" Association="AtBPMModel.FKxmencdGAcc24mji6igXXHvLAUP4">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <EntitySet Name="ActivityResult" EntityType="AtBPMModel.ActivityResult" />
+    <AssociationSet Name="FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg" Association="AtBPMModel.FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg">
+      <End Role="ActivityResult" EntitySet="ActivityResult" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FKF0cPIiQBZRg5tlGUwAGjqi46ySU">
     <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -649,6 +718,281 @@
       </Principal>
       <Dependent Role="ContactCareer">
         <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="RegionId" Type="Guid" />
+    <Property Name="TimeZoneId" Type="Guid" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="TestColumn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88" FromRole="City" ToRole="Account" />
+    <NavigationProperty Name="Country" Relationship="AtBPMModel.FK4vnjzZqZrvyH7pGPTDXQBJ8FUY" FromRole="City" ToRole="Country" />
+    <NavigationProperty Name="Region" Relationship="AtBPMModel.FK5zpRcXQXB0e9qlGTOCMPKC7WJdY" FromRole="City" ToRole="Region" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FK6zZPDcOcVS5abLLCBWJL4RLioyY" FromRole="City" ToRole="Contact" />
+    <NavigationProperty Name="AccountAddress" Relationship="AtBPMModel.FKfLAB7aH2Cp6I94P7W1NUcE9tSA" FromRole="City" ToRole="AccountAddress" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="BillingInfo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="TimeZoneId" Type="Guid" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKfrMV7ZZl5CjXMq3CFlb5UapXk" FromRole="Country" ToRole="Account" />
+    <NavigationProperty Name="City" Relationship="AtBPMModel.FK4vnjzZqZrvyH7pGPTDXQBJ8FUY" FromRole="Country" ToRole="City" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FKIMoLJOQpPpyopu36M0RuWlsJng" FromRole="Country" ToRole="Contact" />
+    <NavigationProperty Name="Region" Relationship="AtBPMModel.FKrDJRK4SI0Ecn6qIR4RigBtnAOI" FromRole="Country" ToRole="Region" />
+    <NavigationProperty Name="AccountAddress" Relationship="AtBPMModel.FKxmencdGAcc24mji6igXXHvLAUP4" FromRole="Country" ToRole="AccountAddress" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="TimeZoneId" Type="Guid" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKq5mLBFSyRkazJDjNmdIyNihPoU" FromRole="Region" ToRole="Account" />
+    <NavigationProperty Name="City" Relationship="AtBPMModel.FK5zpRcXQXB0e9qlGTOCMPKC7WJdY" FromRole="Region" ToRole="City" />
+    <NavigationProperty Name="Contact" Relationship="AtBPMModel.FK8FSE2BZ4nzS816YAsyjV0hhSz0" FromRole="Region" ToRole="Contact" />
+    <NavigationProperty Name="Country" Relationship="AtBPMModel.FKrDJRK4SI0Ecn6qIR4RigBtnAOI" FromRole="Region" ToRole="Country" />
+    <NavigationProperty Name="AccountAddress" Relationship="AtBPMModel.FKtRCLy3Yg8m6Me20hPqEqm1H3VA" FromRole="Region" ToRole="AccountAddress" />
+  </EntityType>
+  <Association Name="FKfrMV7ZZl5CjXMq3CFlb5UapXk">
+    <End Type="AtBPMModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88">
+    <End Type="AtBPMModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKq5mLBFSyRkazJDjNmdIyNihPoU">
+    <End Type="AtBPMModel.Region" Role="Region" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK4vnjzZqZrvyH7pGPTDXQBJ8FUY">
+    <End Type="AtBPMModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="AtBPMModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK5zpRcXQXB0e9qlGTOCMPKC7WJdY">
+    <End Type="AtBPMModel.Region" Role="Region" Multiplicity="0..1" />
+    <End Type="AtBPMModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK6zZPDcOcVS5abLLCBWJL4RLioyY">
+    <End Type="AtBPMModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK8FSE2BZ4nzS816YAsyjV0hhSz0">
+    <End Type="AtBPMModel.Region" Role="Region" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMoLJOQpPpyopu36M0RuWlsJng">
+    <End Type="AtBPMModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKrDJRK4SI0Ecn6qIR4RigBtnAOI">
+    <End Type="AtBPMModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Region" Role="Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="AddressTypeId" Type="Guid" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="RegionId" Type="Guid" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Primary" Type="Boolean" Nullable="false" />
+    <Property Name="AccountId" Type="Guid" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="GPSN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GPSE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="AtBPMModel.FKoV1xJniHz1x37BHkvuLhlITJ1k" FromRole="AccountAddress" ToRole="Account" />
+    <NavigationProperty Name="City" Relationship="AtBPMModel.FKfLAB7aH2Cp6I94P7W1NUcE9tSA" FromRole="AccountAddress" ToRole="City" />
+    <NavigationProperty Name="Region" Relationship="AtBPMModel.FKtRCLy3Yg8m6Me20hPqEqm1H3VA" FromRole="AccountAddress" ToRole="Region" />
+    <NavigationProperty Name="Country" Relationship="AtBPMModel.FKxmencdGAcc24mji6igXXHvLAUP4" FromRole="AccountAddress" ToRole="Country" />
+  </EntityType>
+  <Association Name="FKoV1xJniHz1x37BHkvuLhlITJ1k">
+    <End Type="AtBPMModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="AtBPMModel.AccountAddress" Role="AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKfLAB7aH2Cp6I94P7W1NUcE9tSA">
+    <End Type="AtBPMModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="AtBPMModel.AccountAddress" Role="AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKtRCLy3Yg8m6Me20hPqEqm1H3VA">
+    <End Type="AtBPMModel.Region" Role="Region" Multiplicity="0..1" />
+    <End Type="AtBPMModel.AccountAddress" Role="AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKxmencdGAcc24mji6igXXHvLAUP4">
+    <End Type="AtBPMModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="AtBPMModel.AccountAddress" Role="AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ActivityResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedById" Type="Guid" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessListeners" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Guid" />
+    <Property Name="BusinessProcessOnly" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Activity" Relationship="AtBPMModel.FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg" FromRole="ActivityResult" ToRole="Activity" />
+  </EntityType>
+  <Association Name="FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg">
+    <End Type="AtBPMModel.ActivityResult" Role="ActivityResult" Multiplicity="0..1" />
+    <End Type="AtBPMModel.Activity" Role="Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActivityResult">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="ResultId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

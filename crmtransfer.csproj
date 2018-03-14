@@ -57,6 +57,9 @@
     <Compile Include="Account.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AccountAddress.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AccountCommunication.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
@@ -64,6 +67,9 @@
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Activity.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityResult.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BPMDataModel.Context.cs">
@@ -81,6 +87,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BPMDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
@@ -90,15 +99,27 @@
     <Compile Include="ContactCommunication.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs">
       <DependentUpon>BPMDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs">
+      <DependentUpon>BPMDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Account.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_AccountAddress.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_AccountCommunication.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_City.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Contact.cs">
@@ -110,10 +131,22 @@
     <Compile Include="tbl_ContactCommunication.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_Country.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Field.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Job.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_State.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Task.cs">
+      <DependentUpon>TSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_TaskResult.cs">
       <DependentUpon>TSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TSDataModel.Context.cs">

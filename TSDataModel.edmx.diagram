@@ -28,6 +28,29 @@
         <AssociationConnector Association="AtTSModel.FContactCareerAccountID" />
         <AssociationConnector Association="AtTSModel.FContactCareerContactID" />
         <AssociationConnector Association="AtTSModel.FContactCareerJobID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_City" Width="1.5" PointX="5.25" PointY="15.5" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_Country" Width="1.5" PointX="9.625" PointY="12" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_State" Width="1.5" PointX="7.375" PointY="15.75" />
+        <AssociationConnector Association="AtTSModel.FAccountCityID" />
+        <AssociationConnector Association="AtTSModel.FAccountCountryID" />
+        <AssociationConnector Association="AtTSModel.FAccountStateID" />
+        <AssociationConnector Association="AtTSModel.FCityCountryID" />
+        <AssociationConnector Association="AtTSModel.FCityStateID" />
+        <AssociationConnector Association="AtTSModel.FContactCityID" />
+        <AssociationConnector Association="AtTSModel.FContactCountryID" />
+        <AssociationConnector Association="AtTSModel.FContactStateID" />
+        <AssociationConnector Association="AtTSModel.FStateCountryID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_AccountAddress" Width="1.5" PointX="2.375" PointY="14.25" />
+        <AssociationConnector Association="AtTSModel.FAccountAddressAccountID" />
+        <AssociationConnector Association="AtTSModel.FAccountAddressCityID" />
+        <AssociationConnector Association="AtTSModel.FAccountAddressCountryID" />
+        <AssociationConnector Association="AtTSModel.FAccountAddressStateID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_Task" Width="1.5" PointX="14" PointY="4.25" />
+        <AssociationConnector Association="AtTSModel.FTaskAccountID" />
+        <AssociationConnector Association="AtTSModel.FTaskContactID" />
+        <AssociationConnector Association="AtTSModel.FTaskOwnerID" />
+        <EntityTypeShape EntityType="AtTSModel.tbl_TaskResult" Width="1.5" PointX="14.125" PointY="12.375" />
+        <AssociationConnector Association="AtTSModel.FTaskResultID" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

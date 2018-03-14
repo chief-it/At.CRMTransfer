@@ -44,6 +44,27 @@
     <Property Name="UsrB7Count" Type="int" Nullable="false" />
     <Property Name="UsrScaniaCount" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="AccountAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="AddressTypeId" Type="uniqueidentifier" />
+    <Property Name="CountryId" Type="uniqueidentifier" />
+    <Property Name="RegionId" Type="uniqueidentifier" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Primary" Type="bit" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="GPSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GPSE" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="AccountCommunication">
     <Key>
       <PropertyRef Name="Id" />
@@ -150,6 +171,38 @@
     <Property Name="EnrchEmailDataId" Type="uniqueidentifier" />
     <Property Name="EnrichStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ServiceProcessed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActivityResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="uniqueidentifier" />
+    <Property Name="BusinessProcessOnly" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" />
+    <Property Name="RegionId" Type="uniqueidentifier" />
+    <Property Name="TimeZoneId" Type="uniqueidentifier" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="TestColumn" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -261,6 +314,23 @@
     <Property Name="DateSetNonActual" Type="date" />
     <Property Name="ExternalCommunicationType" Type="nvarchar" MaxLength="500" Nullable="false" />
   </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="BillingInfo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="TimeZoneId" Type="uniqueidentifier" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Job">
     <Key>
       <PropertyRef Name="Id" />
@@ -273,6 +343,21 @@
     <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="ProcessListeners" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="3" />
+    <Property Name="CreatedById" Type="uniqueidentifier" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="3" />
+    <Property Name="ModifiedById" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" />
+    <Property Name="ProcessListeners" Type="int" Nullable="false" />
+    <Property Name="TimeZoneId" Type="uniqueidentifier" />
   </EntityType>
   <Association Name="FK1GGqruqwumV4yn5W3rKML7MOVYc">
     <End Role="Contact" Type="Self.Contact" Multiplicity="0..1">
@@ -300,6 +385,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK4vnjzZqZrvyH7pGPTDXQBJ8FUY">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="Account1" Type="Self.Account" Multiplicity="*" />
@@ -309,6 +406,42 @@
       </Principal>
       <Dependent Role="Account1">
         <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK5zpRcXQXB0e9qlGTOCMPKC7WJdY">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK6zZPDcOcVS5abLLCBWJL4RLioyY">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK8FSE2BZ4nzS816YAsyjV0hhSz0">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="RegionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -376,6 +509,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKfLAB7aH2Cp6I94P7W1NUcE9tSA">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="AccountAddress" Type="Self.AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKfrMV7ZZl5CjXMq3CFlb5UapXk">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKga6GOMY3yTsBM5UObVXJs98Qv0">
     <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
     <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
@@ -426,6 +583,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKIMoLJOQpPpyopu36M0RuWlsJng">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKirx80iw4YX19Eui684F7BsFSAp8">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
@@ -450,6 +619,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKMpbRxbvqMdsx1Iial2kKB1MywA">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
@@ -458,6 +639,32 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Contact">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg">
+    <End Role="ActivityResult" Type="Self.ActivityResult" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActivityResult">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="ResultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKoV1xJniHz1x37BHkvuLhlITJ1k">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AccountAddress" Type="Self.AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
         <PropertyRef Name="AccountId" />
       </Dependent>
     </ReferentialConstraint>
@@ -486,6 +693,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKq5mLBFSyRkazJDjNmdIyNihPoU">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FKq6UZ1UcGWiEwEBUKXX6k11VxtVc">
     <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -495,6 +714,30 @@
       </Principal>
       <Dependent Role="Account">
         <PropertyRef Name="PrimaryContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKrDJRK4SI0Ecn6qIR4RigBtnAOI">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Region" Type="Self.Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKtRCLy3Yg8m6Me20hPqEqm1H3VA">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="AccountAddress" Type="Self.AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="RegionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -522,15 +765,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FKxmencdGAcc24mji6igXXHvLAUP4">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="AccountAddress" Type="Self.AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище AtBPMModelContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountAddress" EntityType="Self.AccountAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccountCommunication" EntityType="Self.AccountCommunication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccountIndustry" EntityType="Self.AccountIndustry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActivityResult" EntityType="Self.ActivityResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ContactCareer" EntityType="Self.ContactCareer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ContactCommunication" EntityType="Self.ContactCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK1GGqruqwumV4yn5W3rKML7MOVYc" Association="Self.FK1GGqruqwumV4yn5W3rKML7MOVYc">
       <End Role="Contact" EntitySet="Contact" />
       <End Role="ContactCareer" EntitySet="ContactCareer" />
@@ -539,9 +799,25 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Activity" EntitySet="Activity" />
     </AssociationSet>
+    <AssociationSet Name="FK4vnjzZqZrvyH7pGPTDXQBJ8FUY" Association="Self.FK4vnjzZqZrvyH7pGPTDXQBJ8FUY">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
     <AssociationSet Name="FK4vuAoQFpJNm3KVrfzlDHOztOhk" Association="Self.FK4vuAoQFpJNm3KVrfzlDHOztOhk">
       <End Role="Account" EntitySet="Account" />
       <End Role="Account1" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK5zpRcXQXB0e9qlGTOCMPKC7WJdY" Association="Self.FK5zpRcXQXB0e9qlGTOCMPKC7WJdY">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK6zZPDcOcVS5abLLCBWJL4RLioyY" Association="Self.FK6zZPDcOcVS5abLLCBWJL4RLioyY">
+      <End Role="City" EntitySet="City" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK8FSE2BZ4nzS816YAsyjV0hhSz0" Association="Self.FK8FSE2BZ4nzS816YAsyjV0hhSz0">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Contact" EntitySet="Contact" />
     </AssociationSet>
     <AssociationSet Name="FK8TncqtOS6Zrgaph0QkfBsU2km8" Association="Self.FK8TncqtOS6Zrgaph0QkfBsU2km8">
       <End Role="Contact" EntitySet="Contact" />
@@ -563,6 +839,14 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Contact1" EntitySet="Contact" />
     </AssociationSet>
+    <AssociationSet Name="FKfLAB7aH2Cp6I94P7W1NUcE9tSA" Association="Self.FKfLAB7aH2Cp6I94P7W1NUcE9tSA">
+      <End Role="City" EntitySet="City" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FKfrMV7ZZl5CjXMq3CFlb5UapXk" Association="Self.FKfrMV7ZZl5CjXMq3CFlb5UapXk">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FKga6GOMY3yTsBM5UObVXJs98Qv0" Association="Self.FKga6GOMY3yTsBM5UObVXJs98Qv0">
       <End Role="Job" EntitySet="Job" />
       <End Role="Contact" EntitySet="Contact" />
@@ -579,6 +863,10 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Contact1" EntitySet="Contact" />
     </AssociationSet>
+    <AssociationSet Name="FKIMoLJOQpPpyopu36M0RuWlsJng" Association="Self.FKIMoLJOQpPpyopu36M0RuWlsJng">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
     <AssociationSet Name="FKirx80iw4YX19Eui684F7BsFSAp8" Association="Self.FKirx80iw4YX19Eui684F7BsFSAp8">
       <End Role="Account" EntitySet="Account" />
       <End Role="Activity" EntitySet="Activity" />
@@ -587,9 +875,21 @@
       <End Role="Job" EntitySet="Job" />
       <End Role="ContactCareer" EntitySet="ContactCareer" />
     </AssociationSet>
+    <AssociationSet Name="FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88" Association="Self.FKlrP2X8Yxtdpx4Aq6SVKvPtwQH88">
+      <End Role="City" EntitySet="City" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FKMpbRxbvqMdsx1Iial2kKB1MywA" Association="Self.FKMpbRxbvqMdsx1Iial2kKB1MywA">
       <End Role="Account" EntitySet="Account" />
       <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg" Association="Self.FKnQ3mGrDrpeoZkUPaBKBirAN5Bgg">
+      <End Role="ActivityResult" EntitySet="ActivityResult" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKoV1xJniHz1x37BHkvuLhlITJ1k" Association="Self.FKoV1xJniHz1x37BHkvuLhlITJ1k">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
     </AssociationSet>
     <AssociationSet Name="FKPkYRMonMU4O22bg1UtAWBnc3Y8" Association="Self.FKPkYRMonMU4O22bg1UtAWBnc3Y8">
       <End Role="Activity" EntitySet="Activity" />
@@ -599,9 +899,21 @@
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Activity" EntitySet="Activity" />
     </AssociationSet>
+    <AssociationSet Name="FKq5mLBFSyRkazJDjNmdIyNihPoU" Association="Self.FKq5mLBFSyRkazJDjNmdIyNihPoU">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FKq6UZ1UcGWiEwEBUKXX6k11VxtVc" Association="Self.FKq6UZ1UcGWiEwEBUKXX6k11VxtVc">
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FKrDJRK4SI0Ecn6qIR4RigBtnAOI" Association="Self.FKrDJRK4SI0Ecn6qIR4RigBtnAOI">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Region" EntitySet="Region" />
+    </AssociationSet>
+    <AssociationSet Name="FKtRCLy3Yg8m6Me20hPqEqm1H3VA" Association="Self.FKtRCLy3Yg8m6Me20hPqEqm1H3VA">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
     </AssociationSet>
     <AssociationSet Name="FKuRAVTAXLVZf8OIhtHm7ZbHObBAM" Association="Self.FKuRAVTAXLVZf8OIhtHm7ZbHObBAM">
       <End Role="AccountIndustry" EntitySet="AccountIndustry" />
@@ -610,6 +922,10 @@
     <AssociationSet Name="FKxLbw957waHhgItDgCsX3oYCAFMs" Association="Self.FKxLbw957waHhgItDgCsX3oYCAFMs">
       <End Role="Contact" EntitySet="Contact" />
       <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FKxmencdGAcc24mji6igXXHvLAUP4" Association="Self.FKxmencdGAcc24mji6igXXHvLAUP4">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

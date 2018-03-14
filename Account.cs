@@ -22,6 +22,7 @@ namespace crmtransfer
             this.Contact1 = new HashSet<Contact>();
             this.AccountCommunication = new HashSet<AccountCommunication>();
             this.ContactCareer = new HashSet<ContactCareer>();
+            this.AccountAddress = new HashSet<AccountAddress>();
         }
     
         public System.Guid Id { get; set; }
@@ -79,5 +80,10 @@ namespace crmtransfer
         public virtual ICollection<AccountCommunication> AccountCommunication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContactCareer> ContactCareer { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual City City { get; set; }
+        public virtual Region Region { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountAddress> AccountAddress { get; set; }
     }
 }

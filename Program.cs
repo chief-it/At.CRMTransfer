@@ -206,7 +206,6 @@ namespace crmtransfer
             outStr = "Сохранили БД";
             Console.WriteLine(outStr); Log.Info(outStr);
 
-
             Console.WriteLine("Грузим средства связи контактов...");
             Log.Info("Грузим средства связи контактов...");
             var listContactCommunication = dbTS.tbl_ContactCommunication.ToList();
@@ -452,7 +451,6 @@ namespace crmtransfer
             dbBPM.Configuration.AutoDetectChangesEnabled = true;
             dbBPM.SaveChanges();
 
-
             outStr = "Грузим средства связи контрагентов...";
             Console.WriteLine(outStr); Log.Info(outStr);
             var listAccountCommunication = dbTS.tbl_AccountCommunication.ToList();
@@ -551,28 +549,6 @@ namespace crmtransfer
             dbBPM.SaveChanges();
             outStr = "Сохранили БД";
             Console.WriteLine(outStr); Log.Info(outStr);
-            
-            #region Try на SaveChanges
-            //try
-            //{
-            //dbBPM.SaveChanges();
-            //}
-            //catch (System.Data.Entity.Validation.DbEntityValidationException dbExc)
-            //{
-            //    string errorStr = "";
-            //    foreach(var error in dbExc.EntityValidationErrors)
-            //    {
-            //        foreach (var er in error.ValidationErrors)
-            //        {
-            //            errorStr += $"{er.PropertyName}\n";
-            //        }
-            //        errorStr += $"\n**********\n";
-            //    }
-            //    Log.Info(errorStr);
-            //    Console.WriteLine(errorStr);
-            //}
-            #endregion
-
             
             outStr = "Грузим карьеру контактов...";
             Console.WriteLine(outStr); Log.Info(outStr);
@@ -681,7 +657,327 @@ namespace crmtransfer
             dbBPM.SaveChanges();
             outStr = "Сохранили БД";
             Console.WriteLine(outStr); Log.Info(outStr);
-            
+
+            outStr = "Сформируем таблицу преобразований стран...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var dicCountriesTable = new Dictionary<Guid, Guid>();
+            var listTSCountries = dbTS.tbl_Country.ToList();
+            foreach (var country in listTSCountries)
+            {
+                string countryName = country.Name;
+                var dbBpmCountry = dbBPM.Country.FirstOrDefault(x => x.Name == countryName);
+                if (dbBpmCountry == null)
+                {
+                    dbBpmCountry = new Country()
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedOn = DateTime.Now,
+                        Name = countryName,
+                        Description = "",
+                        ProcessListeners = 0,
+                        BillingInfo = "",
+                        Code = ""
+                    };
+                    dbBPM.Country.Add(dbBpmCountry);
+                }
+                dicCountriesTable.Add(country.ID, dbBpmCountry.Id);
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.SaveChanges();
+
+            outStr = "Сформируем таблицу преобразований регионов...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var dicRegionsTable = new Dictionary<Guid, Guid>();
+            var listTSRegions = dbTS.tbl_State.ToList();
+            foreach (var region in listTSRegions)
+            {
+                string regionName = region.Name;
+                var dbBpmRegion = dbBPM.Region.FirstOrDefault(x => x.Name == regionName);
+                if (dbBpmRegion == null)
+                {
+                    dbBpmRegion = new Region()
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedOn = DateTime.Now,
+                        Name = regionName,
+                        Description = "",
+                        ProcessListeners = 0
+                    };
+                    Guid tsCountryId = region.CountryID ?? Guid.Empty;
+                    if (tsCountryId != Guid.Empty) dbBpmRegion.CountryId = dicCountriesTable[tsCountryId]; 
+                    dbBPM.Region.Add(dbBpmRegion);
+                }
+                dicRegionsTable.Add(region.ID, dbBpmRegion.Id);
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.SaveChanges();
+
+            outStr = "Сформируем таблицу преобразований городов...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var dicCitiesTable = new Dictionary<Guid, Guid>();
+            var listTSCities = dbTS.tbl_City.ToList();
+            foreach (var city in listTSCities)
+            {
+                string cityName = city.Name;
+                Log.Info($"City={cityName}");
+                var dbBpmCity = dbBPM.City.FirstOrDefault(x => x.Name == cityName);
+                if (dbBpmCity == null)
+                {
+                    dbBpmCity = new City()
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedOn = DateTime.Now,
+                        Name = cityName,
+                        Description = "",
+                        ProcessListeners = 0,
+                        TestColumn = ""
+                    };
+                    Guid tsCountryId = city.CountryID ?? Guid.Empty;
+                    if (tsCountryId != Guid.Empty) dbBpmCity.CountryId = dicCountriesTable[tsCountryId];
+                    Guid tsRegionId = city.StateID ?? Guid.Empty;
+                    if (tsRegionId != Guid.Empty) dbBpmCity.RegionId = dicRegionsTable[tsRegionId];
+                    dbBPM.City.Add(dbBpmCity);
+                }
+                dicCitiesTable.Add(city.ID, dbBpmCity.Id);
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.SaveChanges();
+
+            outStr = "Грузим адреса контрагентов...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var listAccountAddress = dbTS.tbl_AccountAddress.ToList();
+            progress = 0;
+            step = listAccountAddress.Count / 20;
+            dbBPM.Configuration.AutoDetectChangesEnabled = false;
+            foreach (var address in listAccountAddress)
+            {
+                var bpmAddress = new AccountAddress()
+                {
+                    Id = Guid.NewGuid(),
+                    CreatedOn = address.CreatedOn,
+                    ModifiedOn = DateTime.Now,
+                    AddressTypeId = new Guid("780BF68C-4B6E-DF11-B988-001D60E938C6"),
+                    Primary = true,
+                    ProcessListeners = 0,
+                    GPSE = "",
+                    GPSN = ""
+                };
+                Guid tsCountryId = address.CountryID ?? Guid.Empty;
+                if (tsCountryId != Guid.Empty) bpmAddress.CountryId = dicCountriesTable[tsCountryId];
+                Guid tsRegionId = address.StateID ?? Guid.Empty;
+                if (tsRegionId != Guid.Empty) bpmAddress.RegionId = dicRegionsTable[tsRegionId];
+                Guid tsCityId = address.CityID ?? Guid.Empty;
+                if (tsCityId != Guid.Empty) bpmAddress.CityId = dicCitiesTable[tsCityId];
+                bpmAddress.Address = address.Address ?? "";
+                bpmAddress.Zip = address.ZIP ?? "";
+
+                Guid tsAccountId = address.AccountID ?? Guid.Empty;
+                if (tsAccountId == Guid.Empty)
+                {
+                    string errorStr = $"Контрагент с AddressID <{address.ID}> не найден";
+                    Console.WriteLine(errorStr);
+                    Log.Info(errorStr);
+                    continue;
+                }
+                else
+                {
+                    bpmAddress.AccountId = dicAccountsTSBPMIds[tsAccountId];
+                    //Добавляем адрес в поля контрагента
+                    var dbBpmAccount = dbBPM.Account.Find(bpmAddress.AccountId);
+                    if (dbBpmAccount != null)
+                    {
+                        dbBpmAccount.AddressTypeId = new Guid("780BF68C-4B6E-DF11-B988-001D60E938C6");
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.AddressTypeId).IsModified = true;
+                        dbBpmAccount.Address = bpmAddress.Address;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.Address).IsModified = true;
+                        dbBpmAccount.CityId = bpmAddress.CityId;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.CityId).IsModified = true;
+                        dbBpmAccount.RegionId = bpmAddress.RegionId;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.RegionId).IsModified = true;
+                        dbBpmAccount.CountryId = bpmAddress.CountryId;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.CountryId).IsModified = true;
+                        dbBpmAccount.Zip = bpmAddress.Zip;
+                        dbBPM.Entry(dbBpmAccount).Property(c => c.Zip).IsModified = true;
+                    }
+                }
+
+                dbBPM.AccountAddress.Add(bpmAddress);
+                progress++;
+                if ((progress % step) == 0)
+                {
+                    Log.Info($"{(int)(progress / step) * 5}%");
+                    Console.WriteLine($"{(int)(progress / step) * 5}%");
+                    dbBPM.Configuration.AutoDetectChangesEnabled = true;
+                    dbBPM.SaveChanges();
+                    dbBPM.Configuration.AutoDetectChangesEnabled = false;
+                }
+            }
+            dbBPM.Configuration.AutoDetectChangesEnabled = true;
+            dbBPM.SaveChanges();
+            outStr = "Сохранили БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+
+            outStr = "Сформируем таблицу преобразований результатов активностей...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var dicActivityResultTable = new Dictionary<Guid, Guid>();
+            var listTSActivityResults = dbTS.tbl_TaskResult.ToList();
+            foreach (var tsActivityResult in listTSActivityResults)
+            {
+                string activityResultName = tsActivityResult.Result;
+                var bpmActivityResult = dbBPM.ActivityResult.FirstOrDefault(x => x.Name == activityResultName);
+                if (bpmActivityResult == null)
+                {
+                    bpmActivityResult = new ActivityResult()
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedOn = DateTime.Now,
+                        Name = activityResultName,
+                        Description = "",
+                        ProcessListeners = 0,
+                        BusinessProcessOnly = false
+                    };
+                    dbBPM.ActivityResult.Add(bpmActivityResult);
+                }
+                dicActivityResultTable.Add(tsActivityResult.ID, bpmActivityResult.Id);
+            }
+            outStr = "Сохраняем БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            dbBPM.SaveChanges();
+
+            outStr = "Грузим активности...";
+            Console.WriteLine(outStr); Log.Info(outStr);
+            var listTSActivities = dbTS.tbl_Task.ToList();
+            var dicActivitiesTable = new Dictionary<Guid, Guid>();
+            progress = 0;
+            step = listTSActivities.Count / 100;
+            dbBPM.Configuration.AutoDetectChangesEnabled = false;
+            foreach (var tsActivity in listTSActivities)
+            {
+                var bpmActivity = new Activity();
+                bpmActivity.Id = Guid.NewGuid();
+                dicActivitiesTable.Add(tsActivity.ID, bpmActivity.Id);
+                bpmActivity.CreatedOn = tsActivity.CreatedOn;
+                bpmActivity.ModifiedOn = DateTime.Now;
+                bpmActivity.Title = tsActivity.Title ?? "";
+                bpmActivity.StartDate = tsActivity.StartDate;
+                bpmActivity.DueDate = tsActivity.DueDate;
+                switch (tsActivity.PriorityID.ToString().ToUpper())
+                {
+                    case "F6E5132C-BFC4-48E4-832B-0A60BBF6FC57": //Высокий
+                        bpmActivity.PriorityId = new Guid("D625A9FC-7EE6-DF11-971B-001D60E938C6");
+                        break;
+                    case "611A29ED-88C8-432C-9B91-41D5FEE55402": //Низкий
+                        bpmActivity.PriorityId = new Guid("AC96FA02-7FE6-DF11-971B-001D60E938C6");
+                        break;
+                    case "EC4A3064-61DD-46FF-B5B8-453219117CE4": //Средний
+                        bpmActivity.PriorityId = new Guid("AB96FA02-7FE6-DF11-971B-001D60E938C6");
+                        break;
+                }
+                Guid tsCreatedById = tsActivity.CreatedByID ?? Guid.Empty;
+                if (tsCreatedById != Guid.Empty) bpmActivity.AuthorId = dicContactsTSBPMIds[tsCreatedById];
+                Guid tsOwnerId = tsActivity.OwnerID ?? Guid.Empty;
+                if (tsOwnerId != Guid.Empty) bpmActivity.OwnerId = dicContactsTSBPMIds[tsOwnerId];
+                Guid tsContactId = tsActivity.ContactID ?? Guid.Empty;
+                if (tsContactId != Guid.Empty) bpmActivity.ContactId = dicContactsTSBPMIds[tsContactId];
+                Guid tsAccountId = tsActivity.AccountID ?? Guid.Empty;
+                if (tsAccountId != Guid.Empty) bpmActivity.AccountId = dicAccountsTSBPMIds[tsAccountId];
+                switch (tsActivity.TypeID.ToString().ToUpper())
+                {
+                    case "63FB4E89-EE75-404F-8352-1E712AC909F67": //Встреча
+                        bpmActivity.ActivityCategoryId = new Guid("42C74C49-58E6-DF11-971B-001D60E938C6");
+                        break;
+                    case "EE2F344B-BCE6-48A7-8813-20A4964DDE82": //Выполнить
+                        bpmActivity.ActivityCategoryId = new Guid("F51C4643-58E6-DF11-971B-001D60E938C6");
+                        break;
+                    case "8CAD3402-F313-41F7-8EF7-4FE847E25005": //Email
+                        bpmActivity.ActivityCategoryId = new Guid("8038A396-7825-E011-8165-00155D043204");
+                        break;
+                    case "CED7CC70-81CB-4AB1-A9F2-521998B14723": //Звонок - НЕ ВЫБИРАТЬ
+                        bpmActivity.ActivityCategoryId = new Guid("B3645830-297A-4BA4-9B1C-A48E47DEB768");
+                        break;
+                    case "23657C4C-696C-4B44-BDDA-5E0D3BC98BF0": //КП - Коммерческое Предложение
+                        bpmActivity.ActivityCategoryId = new Guid("BDC8FE35-0734-456A-8901-3B00DB178EE0");
+                        break;
+                    case "805B65CB-D19D-4AFD-9546-6716AB6DD522": //ВЗ - Звонок Входящий
+                        bpmActivity.ActivityCategoryId = new Guid("BF298259-C9AA-4909-A868-837FA1772CD8");
+                        break;
+                    case "CFBD7F1C-DBFE-4B46-A8AD-756EAE9B4A0B": //ПЗ - Звонок Первый/Поисковый
+                        bpmActivity.ActivityCategoryId = new Guid("5E5D1BF3-52C4-4986-BBF1-61290B632E76");
+                        break;
+                    case "CC80E536-680D-41F8-9F05-868F2954AED0": //КЗ - Звонок Контрольный
+                        bpmActivity.ActivityCategoryId = new Guid("CB02460C-4C17-4F39-B6AD-924F9FFB7DEF");
+                        break;
+                    case "0A5D11A6-4220-496D-ABDB-EC9E27046F79": //Онлайн Консультант
+                        bpmActivity.ActivityCategoryId = new Guid("B6F85243-C399-4967-B4E0-F77B314662B2");
+                        break;
+                }
+                bpmActivity.ShowInScheduler = tsActivity.ShowInScheduler == 1 ? true : false;
+                switch (tsActivity.StatusID.ToString().ToUpper())
+                {
+                    case "9E289E42-9A0E-4A9C-A57F-049754310D95": //В работе
+                        bpmActivity.StatusId = new Guid("394D4B84-58E6-DF11-971B-001D60E938C6");
+                        break;
+                    case "FB10FCB1-DE0E-446D-81E8-A0C456E2C3AB": //Не начата
+                        bpmActivity.StatusId = new Guid("384D4B84-58E6-DF11-971B-001D60E938C6");
+                        break;
+                    case "F598ECDB-4EEF-4FA8-9E69-A36B053501E5": //Выполнена
+                        bpmActivity.StatusId = new Guid("4BDBB88F-58E6-DF11-971B-001D60E938C6");
+                        break;
+                    case "9A74B908-9FA8-4CC3-8916-BC3D2798AC3A": //Отменена
+                        bpmActivity.StatusId = new Guid("201CFBA8-58E6-DF11-971B-001D60E938C6");
+                        break;
+                }
+                Guid tsActivityResultId = tsActivity.ResultID ?? Guid.Empty;
+                if (tsActivityResultId != Guid.Empty) bpmActivity.ResultId = dicActivityResultTable[tsActivityResultId];
+                bpmActivity.TypeId = new Guid("FBE0ACDC-CFC0-DF11-B00F-001D60E938C6");
+                bpmActivity.DetailedResult = tsActivity.DetailedResult ?? "";
+
+                bpmActivity.RemindToAuthor = false;
+                bpmActivity.RemindToOwner = false;
+                bpmActivity.Recepient = "";
+                bpmActivity.CopyRecepient = "";
+                bpmActivity.BlindCopyRecepient = "";
+                bpmActivity.Body = "";
+                bpmActivity.Notes = "";
+                bpmActivity.Color = "";
+                bpmActivity.ErrorOnSend = "";
+                bpmActivity.DurationInMinutes = tsActivity.Duration ?? 5;
+                bpmActivity.DurationInMnutesAndHours = "";
+                bpmActivity.AllowedResult = "";
+                bpmActivity.CreatedByInvCRM = false;
+                bpmActivity.Sender = "";
+                bpmActivity.ProcessListeners = 0;
+                bpmActivity.IsHtmlBody = false;
+                bpmActivity.HtmlBody = "";
+                bpmActivity.MailHash = "";
+                bpmActivity.GlobalActivityID = "";
+                bpmActivity.UserEmailAddress = "";
+                bpmActivity.FullProjectName = "";
+                bpmActivity.IsNeedProcess = false;
+                bpmActivity.Location = "";
+                bpmActivity.IsNotPublished = false;
+                bpmActivity.HeaderProperties = "";
+                bpmActivity.EnrichStatus = "";
+                bpmActivity.ServiceProcessed = false;
+                dbBPM.Activity.Add(bpmActivity);
+                progress++;
+                if ((progress % step) == 0)
+                {
+                    Log.Info($"{(int)(progress / step)}%");
+                    Console.WriteLine($"{(int)(progress / step)}%");
+                    dbBPM.Configuration.AutoDetectChangesEnabled = true;
+                    dbBPM.SaveChanges();
+                    dbBPM.Configuration.AutoDetectChangesEnabled = false;
+                }
+            }
+            dbBPM.Configuration.AutoDetectChangesEnabled = true;
+            dbBPM.SaveChanges();
+            outStr = "Сохранили БД";
+            Console.WriteLine(outStr); Log.Info(outStr);
+
 
             outStr = "Грузим Author, Owner, Account для контактов...";
             Console.WriteLine(outStr); Log.Info(outStr);
@@ -739,3 +1035,25 @@ namespace crmtransfer
         }
     }
 }
+
+
+#region Try на SaveChanges
+//try
+//{
+//dbBPM.SaveChanges();
+//}
+//catch (System.Data.Entity.Validation.DbEntityValidationException dbExc)
+//{
+//    string errorStr = "";
+//    foreach(var error in dbExc.EntityValidationErrors)
+//    {
+//        foreach (var er in error.ValidationErrors)
+//        {
+//            errorStr += $"{er.PropertyName}\n";
+//        }
+//        errorStr += $"\n**********\n";
+//    }
+//    Log.Info(errorStr);
+//    Console.WriteLine(errorStr);
+//}
+#endregion
